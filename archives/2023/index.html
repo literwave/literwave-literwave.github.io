@@ -19,22 +19,18 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="May the Force be with you :&amp;#41;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="[404]">
-<meta property="og:url" content="http://example.com/404.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="game development">
+<meta property="og:url" content="http://example.com/archives/2023/index.html">
 <meta property="og:site_name" content="game development">
-<meta property="og:description" content="May the Force be with you :&amp;#41;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-27T05:59:15.129Z">
-<meta property="article:modified_time" content="2022-11-27T05:59:15.129Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/literwave.jpg">
     
-    <title>[404] · literwave&#39;s Studio</title>
+    <title>literwave&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -221,8 +217,6 @@
         }
     </script>
     
-        <body class="four-zero-four-body">
-    
         <!-- header -->
         <header class="header header-mobile">
     <!-- top read progress line -->
@@ -281,26 +275,18 @@
 ">
     
     <!-- 主页  -->
-    
-        
-    <!-- about页 -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/404-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                [404]
-            <!-- about -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-                May the Force be with you :&#41;
             
         </p>
         <!-- 文章页 meta -->
@@ -433,7 +419,78 @@
 
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
-                <!-- 不可以删除，否则会调用 post 的 layout -->
+                <main class="main index-page">
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/01/15/%E8%AF%AD%E8%A8%80/">
+                
+                <span class="abstract-title-text">语言</span>
+            </a>
+            <div class="abstract-content">
+                
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/01/15">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/01/15</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/01/02/skynet-2/">
+                
+                <span class="abstract-title-text">skynet源码分析</span>
+            </a>
+            <div class="abstract-content">
+                前言
+这是一遍关于skynet源码分析的blog,中间会对lua源码做对比
+
+正文
+skynet执行的入口文件是skynet_main.c，先来看看int main执行了些什么。
+config_file是启动skynet执行的配置文件，首先会new一个lua vm,加载一下标准库，luaL_loadbufferx(L, load_config, strlen(load_config), &quot;=[skynet config]&quot;, &quot;t&quot;)是编译了load_config（lua会把代码文件看作成一个chunk，并push进栈里，也就是Lclouse,lu...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/01/15">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/01/02</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="skynet源码分析">skynet源码分析</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+    <!-- paginator  -->
+    
+</main>
 
                 <!-- profile -->
                 

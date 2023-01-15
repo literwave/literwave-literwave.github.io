@@ -443,6 +443,115 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/01/15/%E8%AF%AD%E8%A8%80/">
+                
+                <span class="abstract-title-text">语言</span>
+            </a>
+            <div class="abstract-content">
+                
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/01/15">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/01/15</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/01/02/skynet-2/">
+                
+                <span class="abstract-title-text">skynet源码分析</span>
+            </a>
+            <div class="abstract-content">
+                前言
+这是一遍关于skynet源码分析的blog,中间会对lua源码做对比
+
+正文
+skynet执行的入口文件是skynet_main.c，先来看看int main执行了些什么。
+config_file是启动skynet执行的配置文件，首先会new一个lua vm,加载一下标准库，luaL_loadbufferx(L, load_config, strlen(load_config), &quot;=[skynet config]&quot;, &quot;t&quot;)是编译了load_config（lua会把代码文件看作成一个chunk，并push进栈里，也就是Lclouse,lu...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/01/15">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/01/02</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="skynet源码分析">skynet源码分析</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2022/12/31/lua-1/">
+                
+                <span class="abstract-title-text">lua源码分析</span>
+            </a>
+            <div class="abstract-content">
+                前言
+这是一篇关于lua源码分析的博客，每个阶段会有不同的理解，所以这篇博客会更新自己的认知。
+
+正文
+首先我们看的是lua.c的入口，也就是我们使用lua.exe执行lua文件的地方，从这里可以知道lua执行lua文本文件的过程。
+刚开始使用luaL_newstatenew了一个lua_State结构体
+
+
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/01/15">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/31</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="lua源码">lua源码</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/12/11/skynet-1/">
                 
                 <span class="abstract-title-text">skynet example main分析</span>
@@ -807,7 +916,40 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -826,7 +968,7 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 4
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -837,9 +979,36 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
         
             
             
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/15</span>
+            <a class="archive-post-title" href="/2023/01/15/%E8%AF%AD%E8%A8%80/">语言</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/02</span>
+            <a class="archive-post-title" href="/2023/01/02/skynet-2/">skynet源码分析</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
             <div class="archive-year"> 2022 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/31</span>
+            <a class="archive-post-title" href="/2022/12/31/lua-1/">lua源码分析</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/11</span>
@@ -875,6 +1044,11 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
                 game-dev
             </span>
         
+            <span class="sidebar-tag-name" data-tags="lua源码">
+                <span class="iconfont-archer">&#xe606;</span>
+                lua源码
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="mysql">
                 <span class="iconfont-archer">&#xe606;</span>
                 mysql
@@ -883,6 +1057,11 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
             <span class="sidebar-tag-name" data-tags="skynet">
                 <span class="iconfont-archer">&#xe606;</span>
                 skynet
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="skynet源码分析">
+                <span class="iconfont-archer">&#xe606;</span>
+                skynet源码分析
             </span>
         
     </div>
