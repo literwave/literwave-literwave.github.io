@@ -21,13 +21,13 @@
     <meta name="description" content="">
     <meta name="description" content="前言 之前刚看skynet的时候就一直看skynet example的例子，想想这些例子对于新人来说不妨说是入门的时候必看的，也有必要理清一下流程，以防之后再看，得重新梳理一遍，这边blog不会过多关心api的使用  正文 启动流程  任何程序，都有一个入口程序，而skynet这个框架的入口是配置在config start里面(只是从框架层面来说，不涉及底层)，example的入口程序是main.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="skyne example main分析">
+<meta property="og:title" content="skynet example main分析">
 <meta property="og:url" content="http://example.com/2022/12/11/skynet-1/index.html">
 <meta property="og:site_name" content="game development">
 <meta property="og:description" content="前言 之前刚看skynet的时候就一直看skynet example的例子，想想这些例子对于新人来说不妨说是入门的时候必看的，也有必要理清一下流程，以防之后再看，得重新梳理一遍，这边blog不会过多关心api的使用  正文 启动流程  任何程序，都有一个入口程序，而skynet这个框架的入口是配置在config start里面(只是从框架层面来说，不涉及底层)，example的入口程序是main.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-11T04:44:56.000Z">
-<meta property="article:modified_time" content="2022-12-11T06:48:12.910Z">
+<meta property="article:modified_time" content="2022-12-24T09:01:11.607Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="skynet">
 <meta name="twitter:card" content="summary">
@@ -35,7 +35,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/literwave.jpg">
     
-    <title>skyne example main分析 · literwave&#39;s Studio</title>
+    <title>skynet example main分析 · literwave&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -260,7 +260,7 @@
                 <a href="/">literwave game.</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">skyne example main分析</a>
+                <a href="#" class="post-name">skynet example main分析</a>
             </div>
         </div>
     
@@ -306,7 +306,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                skyne example main分析
+                skynet example main分析
             <!-- 404 -->
             
         </h1>
@@ -333,7 +333,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">935</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                        <span>Word count: <span class="post-count word-count">946</span>Reading time: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -541,7 +541,7 @@
 </li>
 </ul>
 </li>
-<li><p>这个时候<code>main.lua</code>会<code>call</code> <code>watchdog</code>服务，<code>watchdog</code>服务会<code>call</code>网关服务监听套接字，执行网关服务的<code>CMD.open</code>,监听配置的地址和端口，这个时候逻辑就阻塞在<code>listen</code></p>
+<li><p>这个时候<code>main.lua</code>会<code>call</code> <code>watchdog</code>服务，<code>watchdog</code>服务会<code>call</code>网关服务监听套接字，执行网关服务的<code>CMD.open</code>,监听配置的地址和端口，这个时候逻辑就执行完了，不会阻塞在<code>listen</code>里的，待研究…</p>
 </li>
 <li><p>客户端开始连接套接字，这个时候<code>gateserver.lua</code>会使用<code>socketdriver.start</code>,判断一下<code>gate</code>模块是否有<code>open</code>函数，开始回调，<code>gate</code>模块记录下<code>watchdog</code>服务的地址。之后<code>socket</code>的第一条消息是<code>open</code>，也就是调用到<code>MSG.open(fd,msg)</code>会做一些限流操作，也就是连接客户端的上限，设置<code>connect[fd] = true</code>表示客户端已经连接上网关模块了。然后回调到<code>gate</code>模块的<code>connect</code>，<code>gate</code>模块会保存一份 <code>connect[fd] = &#123;fd = fd , ip = addr&#125;</code>,再<code>send</code>一条消息到<code>watchdog</code>服务上，告诉<code>watchdog</code>客户端的套接字和地址，这个时候<code>watchdog</code>开始<code>new</code>一个<code>agent</code>服务，也就是玩家服务，<code>watchdog</code>变量<code>agent[fd] = 玩家服务地址</code>，<code>agent</code>服务初始化的时候注册了一个客户端的消息，定义了解包和回调函数。<code>watchdog</code>服务再<code>call</code>玩家服务，这样子玩家服务就保存了套接字的地址和网关模块的地址和<code>watchdog</code>的地址。这个时候可以执行心跳包逻辑，再<code>call</code>网关服务回调<code>forward(source, fd, client, address)</code>，这个时候网关模块完善了<code>connect[fd] = &#123;fd = fd ,ip = addr, client = 0, c.agent = source&#125;</code> 而<code>forwarding[c.agent] = c</code>这样就能根据<code>agent</code>的地址找到<code>fd</code>，根据<code>fd</code>能知道对应<code>agent</code>,这个时候启动<code>gateserver</code>开始启动收发数据，也就是<code>gateserver.openclient</code>,也就是启动<code>socketdriver.start(fd)</code>这个时候才是建立了和客户端的连接</p>
 </li>
@@ -748,6 +748,8 @@
         
         
         
+        
+        
     
     
     
@@ -771,7 +773,7 @@
         
         <li class="archive-post-item">
             <span class="archive-post-date">12/11</span>
-            <a class="archive-post-title" href="/2022/12/11/skynet-1/">skyne example main分析</a>
+            <a class="archive-post-title" href="/2022/12/11/skynet-1/">skynet example main分析</a>
         </li>
     
         
