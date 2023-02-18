@@ -19,15 +19,15 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="前言 这是一篇关于lua源码分析的博客，每个阶段会有不同的理解，所以这篇博客会更新自己的认知。  正文 首先我们看的是lua.c的入口，也就是我们使用lua.exe执行lua文件的地方，从这里可以知道lua执行lua文本文件的过程。 刚开始使用luaL_newstatenew了一个lua_State结构体">
+    <meta name="description" content="前言 这是一篇关于lua源码分析的博客，每个阶段会有不同的理解，所以这篇博客会更新自己的认知。  正文 首先我们看的是lua.c的入口，也就是我们使用lua.exe执行lua文件的地方，从这里可以知道lua执行lua文本文件的过程。 刚开始使用luaL_newstatenew了一个lua_State结构体  数据类型 lua使用lua_TValue表示lua中所有的类型，具体如下: 1234567">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lua源码分析">
 <meta property="og:url" content="http://example.com/2022/12/31/lua-1/index.html">
 <meta property="og:site_name" content="game development">
-<meta property="og:description" content="前言 这是一篇关于lua源码分析的博客，每个阶段会有不同的理解，所以这篇博客会更新自己的认知。  正文 首先我们看的是lua.c的入口，也就是我们使用lua.exe执行lua文件的地方，从这里可以知道lua执行lua文本文件的过程。 刚开始使用luaL_newstatenew了一个lua_State结构体">
+<meta property="og:description" content="前言 这是一篇关于lua源码分析的博客，每个阶段会有不同的理解，所以这篇博客会更新自己的认知。  正文 首先我们看的是lua.c的入口，也就是我们使用lua.exe执行lua文件的地方，从这里可以知道lua执行lua文本文件的过程。 刚开始使用luaL_newstatenew了一个lua_State结构体  数据类型 lua使用lua_TValue表示lua中所有的类型，具体如下: 1234567">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-31T03:54:11.000Z">
-<meta property="article:modified_time" content="2023-01-15T07:34:09.100Z">
+<meta property="article:modified_time" content="2023-02-18T16:02:23.616Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="lua源码">
 <meta name="twitter:card" content="summary">
@@ -333,7 +333,7 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">100</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.6k</span>Reading time: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -501,7 +501,66 @@
 <li>首先我们看的是<code>lua.c</code>的入口，也就是我们使用<code>lua.exe</code>执行<code>lua</code>文件的地方，从这里可以知道<code>lua</code>执行<code>lua</code>文本文件的过程。</li>
 <li>刚开始使用<code>luaL_newstate</code>new了一个<code>lua_State</code>结构体</li>
 </ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ul>
+<li><p><code>lua</code>使用<code>lua_TValue</code>表示<code>lua</code>中所有的类型，具体如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lobject.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">lua_TValue</span> &#123;</span></span><br><span class="line">  TValuefields;</span><br><span class="line">&#125; TValue;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TValuefields	Value value_; int tt_</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">** Union of all Lua values</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">Value</span> &#123;</span></span><br><span class="line">  GCObject *gc;    <span class="comment">/* collectable objects */</span></span><br><span class="line">  <span class="type">void</span> *p;         <span class="comment">/* light userdata */</span></span><br><span class="line">  <span class="type">int</span> b;           <span class="comment">/* booleans */</span></span><br><span class="line">  lua_CFunction f; <span class="comment">/* light C functions */</span></span><br><span class="line">  lua_Integer i;   <span class="comment">/* integer numbers */</span></span><br><span class="line">  lua_Number n;    <span class="comment">/* float numbers */</span></span><br><span class="line">&#125; Value;</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>为什么可以表示所有类型呢，如果是类似于需要垃圾回收的，就可以使用<code>GCObject *</code>指针表示，比如<code>TString</code>,<code>Table</code>,而其他的就表示如不需要<code>lua</code>进行垃圾回收,但需要释放内存的，需要靠自己释放内存;</li>
+</ul>
+</li>
+<li><p><code>lua</code>使用<code>GCUnion</code>表示使用需要垃圾回收的对象,具体如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lstate.h</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">** Union of all collectable objects (only for conversions)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">GCUnion</span> &#123;</span></span><br><span class="line">  GCObject gc;  <span class="comment">/* common header */</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">TString</span> <span class="title">ts</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Udata</span> <span class="title">u</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">union</span> <span class="title">Closure</span> <span class="title">cl</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Table</span> <span class="title">h</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Proto</span> <span class="title">p</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">lua_State</span> <span class="title">th</span>;</span>  <span class="comment">/* thread */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里面每个类型都定义了一个<code>gcobject</code>,也就是公共头，这样可以用上面的<code>GCObject</code>表示，<code>GCObject</code>其实就是用来内存对齐的,这是使用联合体的好处。</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符串的实现"><a href="#字符串的实现" class="headerlink" title="字符串的实现"></a>字符串的实现</h3><ul>
+<li><p><code>luaS_newlstr</code>判断完是否长短字符串</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">** new string (with explicit length)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">TString *<span class="title function_">luaS_newlstr</span> <span class="params">(lua_State *L, <span class="type">const</span> <span class="type">char</span> *str, <span class="type">size_t</span> l)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (l &lt;= LUAI_MAXSHORTLEN)  <span class="comment">/* short string? */</span></span><br><span class="line">    <span class="keyword">return</span> internshrstr(L, str, l);</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    TString *ts;</span><br><span class="line">    <span class="keyword">if</span> (l &gt;= (MAX_SIZE - <span class="keyword">sizeof</span>(TString))/<span class="keyword">sizeof</span>(<span class="type">char</span>))</span><br><span class="line">      luaM_toobig(L);</span><br><span class="line">    ts = luaS_createlngstrobj(L, l);</span><br><span class="line">    <span class="built_in">memcpy</span>(getstr(ts), str, l * <span class="keyword">sizeof</span>(<span class="type">char</span>));</span><br><span class="line">    <span class="keyword">return</span> ts;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个是带长度的字符串</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">** Create or reuse a zero-terminated string, first checking in the</span></span><br><span class="line"><span class="comment">** cache (using the string address as a key). The cache can contain</span></span><br><span class="line"><span class="comment">** only zero-terminated strings, so it is safe to use &#x27;strcmp&#x27; to</span></span><br><span class="line"><span class="comment">** check hits.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">TString *<span class="title function_">luaS_new</span> <span class="params">(lua_State *L, <span class="type">const</span> <span class="type">char</span> *str)</span> &#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> i = point2uint(str) % STRCACHE_N;  <span class="comment">/* hash */</span></span><br><span class="line">  <span class="type">int</span> j;</span><br><span class="line">  TString **p = G(L)-&gt;strcache[i];</span><br><span class="line">  <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; STRCACHE_M; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(str, getstr(p[j])) == <span class="number">0</span>)  <span class="comment">/* hit? */</span></span><br><span class="line">      <span class="keyword">return</span> p[j];  <span class="comment">/* that is it */</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* normal route */</span></span><br><span class="line">  <span class="keyword">for</span> (j = STRCACHE_M - <span class="number">1</span>; j &gt; <span class="number">0</span>; j--)</span><br><span class="line">    p[j] = p[j - <span class="number">1</span>];  <span class="comment">/* move out last element */</span></span><br><span class="line">  <span class="comment">/* new element is first in the list */</span></span><br><span class="line">  p[<span class="number">0</span>] = luaS_newlstr(L, str, <span class="built_in">strlen</span>(str));</span><br><span class="line">  <span class="keyword">return</span> p[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建或重新使用一个带<code>\0</code>终止的字符串，首次检查缓存，缓存只包含0终止的字符串，所以它是安全的，去使用<code>strcmp</code>去检查缓存是否存在。其实就是从<code>strcache</code>里面中找，如果找不到，就把<code>p[0]</code>缓存为新创建的字符串。</li>
+</ul>
+</li>
+<li><p>短字符串(长度小于等于40)</p>
+<ul>
+<li><p>短字符串走<code>internshrstr(L, str, l)</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">** checks whether short string exists and reuses it or creates a new one</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">static</span> TString *<span class="title function_">internshrstr</span> <span class="params">(lua_State *L, <span class="type">const</span> <span class="type">char</span> *str, <span class="type">size_t</span> l)</span> &#123;</span><br><span class="line">  TString *ts;</span><br><span class="line">  global_State *g = G(L);</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> h = luaS_hash(str, l, g-&gt;seed);</span><br><span class="line">  TString **<span class="built_in">list</span> = &amp;g-&gt;strt.hash[lmod(h, g-&gt;strt.size)];</span><br><span class="line">  lua_assert(str != <span class="literal">NULL</span>);  <span class="comment">/* otherwise &#x27;memcmp&#x27;/&#x27;memcpy&#x27; are undefined */</span></span><br><span class="line">  <span class="keyword">for</span> (ts = *<span class="built_in">list</span>; ts != <span class="literal">NULL</span>; ts = ts-&gt;u.hnext) &#123;</span><br><span class="line">    <span class="keyword">if</span> (l == ts-&gt;shrlen &amp;&amp;</span><br><span class="line">        (<span class="built_in">memcmp</span>(str, getstr(ts), l * <span class="keyword">sizeof</span>(<span class="type">char</span>)) == <span class="number">0</span>)) &#123;</span><br><span class="line">      <span class="comment">/* found! */</span></span><br><span class="line">      <span class="keyword">if</span> (isdead(g, ts))  <span class="comment">/* dead (but not collected yet)? */</span></span><br><span class="line">        changewhite(ts);  <span class="comment">/* resurrect it */</span></span><br><span class="line">      <span class="keyword">return</span> ts;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (g-&gt;strt.nuse &gt;= g-&gt;strt.size &amp;&amp; g-&gt;strt.size &lt;= MAX_INT/<span class="number">2</span>) &#123;</span><br><span class="line">    luaS_resize(L, g-&gt;strt.size * <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">list</span> = &amp;g-&gt;strt.hash[lmod(h, g-&gt;strt.size)];  <span class="comment">/* recompute with new size */</span></span><br><span class="line">  &#125;</span><br><span class="line">  ts = createstrobj(L, l, LUA_TSHRSTR, h);</span><br><span class="line">  <span class="built_in">memcpy</span>(getstr(ts), str, l * <span class="keyword">sizeof</span>(<span class="type">char</span>));</span><br><span class="line">  ts-&gt;shrlen = cast_byte(l);</span><br><span class="line">  ts-&gt;u.hnext = *<span class="built_in">list</span>;</span><br><span class="line">  *<span class="built_in">list</span> = ts;</span><br><span class="line">  g-&gt;strt.nuse++;</span><br><span class="line">  <span class="keyword">return</span> ts;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>luaS_hash(str, l, g-&gt;seed);</code>这里面是产生<code>hash</code>的接口，其实是根据<code>g-&gt;seed</code>种子去做的<code>hash</code>值,</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> <span class="title function_">luaS_hash</span> <span class="params">(<span class="type">const</span> <span class="type">char</span> *str, <span class="type">size_t</span> l, <span class="type">unsigned</span> <span class="type">int</span> seed)</span> &#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> h = seed ^ cast(<span class="type">unsigned</span> <span class="type">int</span>, l);</span><br><span class="line">  <span class="type">size_t</span> step = (l &gt;&gt; LUAI_HASHLIMIT) + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (; l &gt;= step; l -= step)</span><br><span class="line">    h ^= ((h&lt;&lt;<span class="number">5</span>) + (h&gt;&gt;<span class="number">2</span>) + cast_byte(str[l - <span class="number">1</span>]));</span><br><span class="line">  <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>种子去异或长度，由异或的运算可知，相同为0，不同为1；然后<code>step</code>右移5位,这样循环的次数会变少,关于<code>hash</code>算法的谈论，可以看云风大神关于<code>lua hash</code>函数的一点谈论，这里就不深入研究了，<code>hash</code>函数的设计其实就是为了减少少的碰撞,不至于吃更多的内存。</li>
+</ul>
+</li>
+<li><p>继续回到<code>hash</code>后面的讲解，取到<code>g-&gt;strt.hash</code>其实<code>lmod</code>其实就是为了防止不超过当前<code>strt.size</code>长度的大小，然后开始顺着列表开始遍历，如果产生碰撞，其实就是产生一条链子，顺着这条链表查找下去如果有申请的字符串，就使用，而且先检查长度，这样会减少<code>strcmp</code>的比较效率，如果找到了，判断一下字符串是否在可回收阶段，返回查找到的字符串;如果没找到，肯定是需要申请内存去放<code>TStirng</code>,这样肯定先检查需不需要扩容,具体如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">** resizes the string table</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">luaS_resize</span> <span class="params">(lua_State *L, <span class="type">int</span> newsize)</span> &#123;</span><br><span class="line">  <span class="type">int</span> i;</span><br><span class="line">  stringtable *tb = &amp;G(L)-&gt;strt;</span><br><span class="line">  <span class="keyword">if</span> (newsize &gt; tb-&gt;size) &#123;  <span class="comment">/* grow table if needed */</span></span><br><span class="line">    luaM_reallocvector(L, tb-&gt;hash, tb-&gt;size, newsize, TString *);</span><br><span class="line">    <span class="keyword">for</span> (i = tb-&gt;size; i &lt; newsize; i++)</span><br><span class="line">      tb-&gt;hash[i] = <span class="literal">NULL</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; tb-&gt;size; i++) &#123;  <span class="comment">/* rehash */</span></span><br><span class="line">    TString *p = tb-&gt;hash[i];</span><br><span class="line">    tb-&gt;hash[i] = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">while</span> (p) &#123;  <span class="comment">/* for each node in the list */</span></span><br><span class="line">      TString *hnext = p-&gt;u.hnext;  <span class="comment">/* save next */</span></span><br><span class="line">      <span class="type">unsigned</span> <span class="type">int</span> h = lmod(p-&gt;hash, newsize);  <span class="comment">/* new position */</span></span><br><span class="line">      p-&gt;u.hnext = tb-&gt;hash[h];  <span class="comment">/* chain it */</span></span><br><span class="line">      tb-&gt;hash[h] = p;</span><br><span class="line">      p = hnext;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (newsize &lt; tb-&gt;size) &#123;  <span class="comment">/* shrink table if needed */</span></span><br><span class="line">    <span class="comment">/* vanishing slice should be empty */</span></span><br><span class="line">    lua_assert(tb-&gt;hash[newsize] == <span class="literal">NULL</span> &amp;&amp; tb-&gt;hash[tb-&gt;size - <span class="number">1</span>] == <span class="literal">NULL</span>);</span><br><span class="line">    luaM_reallocvector(L, tb-&gt;hash, tb-&gt;size, newsize, TString *);</span><br><span class="line">  &#125;</span><br><span class="line">  tb-&gt;size = newsize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>调整大小，这个接口支持扩容和缩小，分配一个<code>newsize * (TString *)</code>的大小，然后把<code>newsize-oldsize</code>的部分初始化，赋值为空指针，再把旧的元素重新与新大小与一遍，装进新的里面。</li>
+</ul>
+</li>
+<li><p>回到<code>createstrobj</code>，这里采用了一个巧妙的方法，申请了一个<code>TString</code>的内存大小，再加上字符串的内存大小，转换为字符串的内存的时候就直接使用<code>cast(char*, (ts)) + sizeof (UTString)</code>，且使用<code>ts-&gt;next = g-&gt;allgc</code>头插法,去方便<code>gc</code>遍历</p>
+</li>
+<li></li>
+</ul>
+</li>
+<li><p>长字符串(长度小于等于40)</p>
+<ul>
+<li>长字符串没有放进<code>g-&gt;strt</code>里面，而且<code>hash</code>值就是<code>g-&gt;seed</code>，简单粗暴，就是创建了一个<code>TString</code>对象，而且长字符串好像不需要查找原来是否有创建好的字符串，也就是说有一个就<code>new</code>一个。</li>
+</ul>
+</li>
+</ul>
+<h3 id="luaL-newstate-讲解"><a href="#luaL-newstate-讲解" class="headerlink" title="luaL_newstate()讲解"></a><code>luaL_newstate()</code>讲解</h3>
     </article>
     <!-- license -->
     
@@ -659,7 +718,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">字符串的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#luaL-newstate-%E8%AE%B2%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">luaL_newstate()讲解</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -709,10 +768,6 @@
         
         
     
-        
-        
-        
-        
         
         
         
@@ -816,19 +871,14 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="game-dev">
-                <span class="iconfont-archer">&#xe606;</span>
-                game-dev
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="lua源码">
                 <span class="iconfont-archer">&#xe606;</span>
                 lua源码
             </span>
         
-            <span class="sidebar-tag-name" data-tags="mysql">
+            <span class="sidebar-tag-name" data-tags="game-dev">
                 <span class="iconfont-archer">&#xe606;</span>
-                mysql
+                game-dev
             </span>
         
             <span class="sidebar-tag-name" data-tags="skynet">
@@ -839,6 +889,16 @@
             <span class="sidebar-tag-name" data-tags="skynet源码分析">
                 <span class="iconfont-archer">&#xe606;</span>
                 skynet源码分析
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="mysql">
+                <span class="iconfont-archer">&#xe606;</span>
+                mysql
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="编程语言杂言">
+                <span class="iconfont-archer">&#xe606;</span>
+                编程语言杂言
             </span>
         
     </div>

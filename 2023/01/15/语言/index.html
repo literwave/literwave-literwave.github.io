@@ -19,14 +19,17 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="article">
+    <meta name="description" content="前言 这是一篇关于编程语言的一些思考，限于lua和erlang和c之间的思考，我用过erlang和lua和c，所以对于这，我想我的一些话可以经过一些推敲，我正在使用lua也许言语会更偏向于这个小儿子，但我也有我的道理。也会从游戏开发框架讲述。  正文 对于erlang来说，刚接触的时候，以为语言里面所述的进程是系统级进程，但经过一年多的知识积累，我想我的认知可以改变了，erlang是一开始为高并发">
+<meta property="og:type" content="article">
 <meta property="og:title" content="语言">
 <meta property="og:url" content="http://example.com/2023/01/15/%E8%AF%AD%E8%A8%80/index.html">
 <meta property="og:site_name" content="game development">
+<meta property="og:description" content="前言 这是一篇关于编程语言的一些思考，限于lua和erlang和c之间的思考，我用过erlang和lua和c，所以对于这，我想我的一些话可以经过一些推敲，我正在使用lua也许言语会更偏向于这个小儿子，但我也有我的道理。也会从游戏开发框架讲述。  正文 对于erlang来说，刚接触的时候，以为语言里面所述的进程是系统级进程，但经过一年多的知识积累，我想我的认知可以改变了，erlang是一开始为高并发">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-15T06:54:47.000Z">
-<meta property="article:modified_time" content="2023-01-15T06:54:47.853Z">
+<meta property="article:modified_time" content="2023-01-15T07:36:56.656Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="编程语言杂言">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -323,12 +326,14 @@
                     <div class= post-intro-tags >
     
     
+        <a class="post-tag" href="javascript:void(0);" data-tags="编程语言杂言">编程语言杂言</a>
+    
 </div>
 
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">0</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">587</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -489,7 +494,17 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>这是一篇关于编程语言的一些思考，限于<code>lua</code>和<code>erlang</code>和<code>c</code>之间的思考，我用过<code>erlang</code>和<code>lua</code>和<code>c</code>，所以对于这，我想我的一些话可以经过一些推敲，我正在使用<code>lua</code>也许言语会更偏向于这个小儿子，但我也有我的道理。也会从游戏开发框架讲述。</li>
+</ul>
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><ul>
+<li>对于<code>erlang</code>来说，刚接触的时候，以为语言里面所述的进程是系统级进程，但经过一年多的知识积累，我想我的认知可以改变了，<code>erlang</code>是一开始为高并发设计的，里面所述的进程其实是轻量级进程，也就是说比系统进程的<code>lv</code>低一点，比线程高一点，也就是游戏开发中的<code>actor</code>模型，这也是它适用于游戏开发中的优点之一，它的缺点也就是灵活性不高，如果要明确说上一点的话，例如不同<code>actor</code>的通信协议，而且基于游戏中策划不停变动的需求，开发起来时间成本比较高。而且相比于<code>c</code>和<code>lua</code>语言中的内存来说，<code>erlang</code>由于语言限制，自己做了内存的一套库。<code>erlang</code>优点也是占用内存比较少。而且由于该领域的大神开源出来的东西都比较少，所以要成为该领域的大神，很难坚持。</li>
+<li>对于<code>lua</code>来说，刚开始接触的时候，感觉跟<code>python</code>差不多，很容易上手，但是<code>lua</code>相比于<code>python</code>来说还是小巧精简很多，我偏向于这个小儿子的原因就是，同等需求使用<code>lua</code>的开发效率会很高，而且基于经常变更的数据库字段，也不需要清数据库。</li>
+</ul>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><ul>
+<li>基于一些自己的思考，我觉得对于我们这种没有在该领域有任何建树的程序员来说，技术角度看的话，不应该单一评论<code>erlang</code>不好，或者<code>lua</code>不好，但凡深入过源码来讲，<code>erlang</code>虚拟机的调度进制设计，<code>actor</code>设计，<code>lua</code>的协程设计，<code>c</code>语言的标准项目。无一不是经过反复多次推敲来设计的。对于游戏开发来说，我们完全是使用语言的特性去开发</li>
+</ul>
+
     </article>
     <!-- license -->
     
@@ -642,7 +657,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">3.</span> <span class="toc-text">结语</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -692,10 +707,6 @@
         
         
     
-        
-        
-        
-        
         
         
         
@@ -799,19 +810,14 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="game-dev">
-                <span class="iconfont-archer">&#xe606;</span>
-                game-dev
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="lua源码">
                 <span class="iconfont-archer">&#xe606;</span>
                 lua源码
             </span>
         
-            <span class="sidebar-tag-name" data-tags="mysql">
+            <span class="sidebar-tag-name" data-tags="game-dev">
                 <span class="iconfont-archer">&#xe606;</span>
-                mysql
+                game-dev
             </span>
         
             <span class="sidebar-tag-name" data-tags="skynet">
@@ -822,6 +828,16 @@
             <span class="sidebar-tag-name" data-tags="skynet源码分析">
                 <span class="iconfont-archer">&#xe606;</span>
                 skynet源码分析
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="mysql">
+                <span class="iconfont-archer">&#xe606;</span>
+                mysql
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="编程语言杂言">
+                <span class="iconfont-archer">&#xe606;</span>
+                编程语言杂言
             </span>
         
     </div>

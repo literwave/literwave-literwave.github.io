@@ -440,13 +440,15 @@
 首先我们看的是lua.c的入口，也就是我们使用lua.exe执行lua文件的地方，从这里可以知道lua执行lua文本文件的过程。
 刚开始使用luaL_newstatenew了一个lua_State结构体
 
-
+数据类型
+lua使用lua_TValue表示lua中所有的类型，具体如下:
+123456789101112131415161718// lobject.htypedef struct lua_TValue &#123;  TValuefields;&#125; TValue;#def...
             </div>
             <!-- read more -->
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/01/15">
+                <div class="abstract-date" title="Last updated: 2023/02/19">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/31</span>
                 </div>
                 <!-- tags -->
@@ -791,10 +793,6 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
         
         
         
-        
-        
-        
-        
     
     
     
@@ -872,19 +870,14 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
         
-            <span class="sidebar-tag-name" data-tags="game-dev">
-                <span class="iconfont-archer">&#xe606;</span>
-                game-dev
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="lua源码">
                 <span class="iconfont-archer">&#xe606;</span>
                 lua源码
             </span>
         
-            <span class="sidebar-tag-name" data-tags="mysql">
+            <span class="sidebar-tag-name" data-tags="game-dev">
                 <span class="iconfont-archer">&#xe606;</span>
-                mysql
+                game-dev
             </span>
         
             <span class="sidebar-tag-name" data-tags="skynet">
@@ -895,6 +888,16 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
             <span class="sidebar-tag-name" data-tags="skynet源码分析">
                 <span class="iconfont-archer">&#xe606;</span>
                 skynet源码分析
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="mysql">
+                <span class="iconfont-archer">&#xe606;</span>
+                mysql
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="编程语言杂言">
+                <span class="iconfont-archer">&#xe606;</span>
+                编程语言杂言
             </span>
         
     </div>
