@@ -443,6 +443,60 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/07/13/lua-debug/">
+                
+                <span class="abstract-title-text">lua_debug</span>
+            </a>
+            <div class="abstract-content">
+                前言
+搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http://www.lua.org/versions.html
+
+正文
+vscode的插件准备（有安装code runner的需要禁止用）
+
+
+准备一个vscode工程目录如下：
+
+
+把lua-5.3.6的源文件复制一份到include文件夹和src，然后使用del *h或del *c删除对应不需要的文件夹。如图：
+
+
+然后需要注释掉lua.c源码的int main和luac.c源码的int main的入口
+
+
+
+
+
+vscode调式c配置，首...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/13">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/13</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="vscode调式lua源码">vscode调式lua源码</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/07/13/hexo-note/">
                 
                 <span class="abstract-title-text">hexo_note</span>
@@ -450,7 +504,10 @@
             <div class="abstract-content">
                 
 创建一个md文件命令hexo new xxx
-123hexo cleanhexo ghe
+123hexo cleanhexo ghexo d
+
+https://blog.csdn.net/Xupixel/article/details/120405501
+
 
 
             </div>
@@ -1004,7 +1061,14 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
         
         
         
@@ -1043,7 +1107,7 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 8
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -1057,6 +1121,12 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span>
+            <a class="archive-post-title" href="/2023/07/13/lua-debug/">lua_debug</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">07/13</span>
@@ -1137,6 +1207,11 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
             <span class="sidebar-tag-name" data-tags="hexo相关命令">
                 <span class="iconfont-archer">&#xe606;</span>
                 hexo相关命令
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="vscode调式lua源码">
+                <span class="iconfont-archer">&#xe606;</span>
+                vscode调式lua源码
             </span>
         
             <span class="sidebar-tag-name" data-tags="mysql">

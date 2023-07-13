@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="game development">
-<meta property="og:url" content="http://example.com/archives/2022/11/index.html">
+<meta property="og:url" content="http://example.com/tags/vscode%E8%B0%83%E5%BC%8Flua%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="game development">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
@@ -428,44 +428,45 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2022/11/27/mysql/">
+            <a class="abstract-title" href="/2023/07/13/lua-debug/">
                 
-                <span class="abstract-title-text">一次mysql源码安装</span>
+                <span class="abstract-title-text">lua_debug</span>
             </a>
             <div class="abstract-content">
-                
-需要准备的条件
+                前言
+搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http://www.lua.org/versions.html
 
-cmake
-gcc
-boost1.59.0
+正文
+vscode的插件准备（有安装code runner的需要禁止用）
 
 
-这里贴出我对应的依赖版本(由于图片加载太慢了)
-12camke version 3.25.0-rclgcc (GCC) 12.2.0
+准备一个vscode工程目录如下：
 
-mysql版本对应的依赖boost版本必须要匹配，编译过程如果有报错信息boost要求对应的版本
 
-这里选择的是mysql5.7.17,mysql源码链接
+把lua-5.3.6的源文件复制一份到include文件夹和src，然后使用del *h或del *c删除对应不需要的文件夹。如图：
 
-boost对应的版本库,选择需要的版本对应download就行,boost版本
 
-下载对应好需要的依赖就行,就开始解压过程，以mysql源码为例子
-123cd /home/soft/wget https://github.com/m...
+然后需要注释掉lua.c源码的int main和luac.c源码的int main的入口
+
+
+
+
+
+vscode调式c配置，首...
             </div>
             <!-- read more -->
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/11">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/11/27</span>
+                <div class="abstract-date" title="Last updated: 2023/07/13">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/13</span>
                 </div>
                 <!-- tags -->
                 
                     <div class= abstract-tags >
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="mysql">mysql</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="vscode调式lua源码">vscode调式lua源码</a>
     
 </div>
 
