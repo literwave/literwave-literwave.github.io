@@ -448,7 +448,7 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/02/26">
+                <div class="abstract-date" title="Last updated: 2023/06/17">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/31</span>
                 </div>
                 <!-- tags -->
@@ -521,13 +521,34 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
                 <span class="abstract-title-text">csapp</span>
             </a>
             <div class="abstract-content">
-                
+                c语言编译过程
+预处理
+1g++ -E test.cpp -o test.i
+
+编译
+1g++ -S test.i - o test.s
+
+汇编
+1g++ -c test.s -o test.o
+
+链接
+
+g++ test.o -o test
+1234567c语言编译参数* -O[n]优化源代码,一般用`-O2`* -l和-L
+链接glog库
+g++ -lglog test.cpp
+
+-l 参数在/lib和/usr/lib/和/usr/local/lib里的库
+如果库没有在上面三个目录里，需要使用-L参数指定库文件所在目录
+123* -I指定头文件搜索目录
+-I
+默认在/usr/incl...
             </div>
             <!-- read more -->
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/11">
+                <div class="abstract-date" title="Last updated: 2023/06/28">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/03</span>
                 </div>
                 <!-- tags -->
@@ -713,7 +734,16 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
         
         
         
@@ -748,7 +778,7 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 7
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -764,8 +794,8 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
             
         
         <li class="archive-post-item">
-            <span class="archive-post-date">01/15</span>
-            <a class="archive-post-title" href="/2023/01/15/%E8%AF%AD%E8%A8%80/">语言</a>
+            <span class="archive-post-date">07/13</span>
+            <a class="archive-post-title" href="/2023/07/13/hexo-note/">hexo_note</a>
         </li>
     
         
@@ -813,6 +843,21 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
             <a class="archive-post-title" href="/2022/11/27/mysql/">一次mysql源码安装</a>
         </li>
     
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> Invalid date </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span>
+            <a class="archive-post-title" href="/2023/07/03/%E5%85%AB%E8%82%A1%E6%96%87/">[Untitled Post]</a>
+        </li>
+    
     </div>
 </div>
 
@@ -824,9 +869,9 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
                 game-dev
             </span>
         
-            <span class="sidebar-tag-name" data-tags="skynet">
+            <span class="sidebar-tag-name" data-tags="hexo相关命令">
                 <span class="iconfont-archer">&#xe606;</span>
-                skynet
+                hexo相关命令
             </span>
         
             <span class="sidebar-tag-name" data-tags="mysql">
@@ -834,9 +879,9 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
                 mysql
             </span>
         
-            <span class="sidebar-tag-name" data-tags="编程语言杂言">
+            <span class="sidebar-tag-name" data-tags="skynet">
                 <span class="iconfont-archer">&#xe606;</span>
-                编程语言杂言
+                skynet
             </span>
         
             <span class="sidebar-tag-name" data-tags="skynet源码分析">
