@@ -557,6 +557,96 @@ https://blog.csdn.net/Xupixel/article/details/120405501
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/04/30/battle/">
+                
+                <span class="abstract-title-text">游戏开发</span>
+            </a>
+            <div class="abstract-content">
+                战斗分析
+战斗需要的数据(怪物)
+首先需要怪物组id列表，决定玩家打几组怪物
+打的回合数
+攻击者的战斗列表
+怪物的等级列表
+客户端的其他数据(地图，是否负伤, 阵法id)
+法则数据列表
+初始血量列表
+
+需知前提
+怪物同样需要构造战斗列表，战力一般都是通过属性计算的
+注意站位信息，3人的队伍，可能前排一个，也有可能前排两个,有啥不同呢，因为打前排和打后排伤害是不同的。
+战斗最好在里面有动态测试标志。
+
+得到攻击者和防御者的列表
+数据结构为
+12345678910111213141516figh_list = &#123;baseList = &#123;&#125;,    &#125;b...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/16">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/04/30</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="game-dev">game-dev</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/04/20/zmdb/">
+                
+                <span class="abstract-title-text">游戏开发之宗门大比</span>
+            </a>
+            <div class="abstract-content">
+                宗门大比宗门大比是策划想出来的运营活动，本质就是跨服活动战斗，和本服活动战斗，难点就是如何共享玩家的个人数据，不讨论玩家个人数据更新问题。
+设计
+首先呢，活动和运营活动都在activity_base里面,如果是跨服，会判断是否是跨服group_idx也就是跨服分组，也就是多少个服跨在一起，跨服也有服务器id,这设计到跨服和游戏服务器之间的rpc通信,
+首先是战斗，跨服那边使用id大于30000的，作为跨服活动id，这样的好处是不管在哪都可以判断这个活动是否是跨服，当开始战斗的时候，就直接判断是运营活动，还是跨服运营活动，如果是跨服运营活动，就把战斗信息发到跨服服务器上的gameserve...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/16">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/04/20</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="game-dev">game-dev</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/01/02/skynet-2/">
                 
                 <span class="abstract-title-text">skynet源码分析</span>
@@ -765,60 +855,11 @@ g++ -lglog test.cpp
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/11/27/mysql/">
-                
-                <span class="abstract-title-text">一次mysql源码安装</span>
-            </a>
-            <div class="abstract-content">
-                
-需要准备的条件
-
-cmake
-gcc
-boost1.59.0
-
-
-这里贴出我对应的依赖版本(由于图片加载太慢了)
-12camke version 3.25.0-rclgcc (GCC) 12.2.0
-
-mysql版本对应的依赖boost版本必须要匹配，编译过程如果有报错信息boost要求对应的版本
-
-这里选择的是mysql5.7.17,mysql源码链接
-
-boost对应的版本库,选择需要的版本对应download就行,boost版本
-
-下载对应好需要的依赖就行,就开始解压过程，以mysql源码为例子
-123cd /home/soft/wget https://github.com/m...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/11">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/11/27</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="mysql">mysql</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
+    
+        <nav class="page-nav">
+            <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &gt;</a>
+        </nav>
     
 </main>
 
@@ -966,7 +1007,29 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1011,7 +1074,7 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 9
+        Total : 11
         </div>
         <!-- search  -->
         
@@ -1035,6 +1098,18 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
         <li class="archive-post-item">
             <span class="archive-post-date">07/13</span>
             <a class="archive-post-title" href="/2023/07/13/hexo-note/">hexo_note</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span>
+            <a class="archive-post-title" href="/2023/04/30/battle/">游戏开发</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span>
+            <a class="archive-post-title" href="/2023/04/20/zmdb/">游戏开发之宗门大比</a>
         </li>
     
         

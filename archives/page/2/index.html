@@ -19,32 +19,18 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="前言 搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http:&#x2F;&#x2F;www.lua.org&#x2F;versions.html  正文 vscode的插件准备（有安装code runner的需要禁止用）   准备一个vscode工程目录如下：   把lua-5.3.6的源文件复制一份到include文件夹和src，然">
-<meta property="og:type" content="article">
-<meta property="og:title" content="lua_debug">
-<meta property="og:url" content="http://example.com/2023/07/13/lua-debug/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="game development">
+<meta property="og:url" content="http://example.com/archives/page/2/index.html">
 <meta property="og:site_name" content="game development">
-<meta property="og:description" content="前言 搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http:&#x2F;&#x2F;www.lua.org&#x2F;versions.html  正文 vscode的插件准备（有安装code runner的需要禁止用）   准备一个vscode工程目录如下：   把lua-5.3.6的源文件复制一份到include文件夹和src，然">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/image-20230713213431524.png">
-<meta property="og:image" content="http://example.com/image-20230713212717098.png">
-<meta property="og:image" content="http://example.com/image-20230713213040757.png">
-<meta property="og:image" content="http://example.com/image-20230713213755472.png">
-<meta property="og:image" content="http://example.com/image-20230713213822227.png">
-<meta property="og:image" content="http://example.com/image-20230713214521760.png">
-<meta property="og:image" content="http://example.com/image-20230713214804242.png">
-<meta property="og:image" content="http://example.com/image-20230713214851701.png">
-<meta property="article:published_time" content="2023-07-13T13:19:31.000Z">
-<meta property="article:modified_time" content="2023-07-16T02:22:19.291Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="vscode调式lua源码">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/image-20230713213431524.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/literwave.jpg">
     
-    <title>lua_debug · literwave&#39;s Studio</title>
+    <title>literwave&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -231,8 +217,6 @@
         }
     </script>
     
-        <body class="post-body">
-    
         <!-- header -->
         <header class="header header-mobile">
     <!-- top read progress line -->
@@ -262,17 +246,6 @@
     </div>
     <!-- toggle banner for post layout -->
     
-        
-            <div class="banner">
-        
-            <div class="blog-title header-element">
-                <a href="/">literwave game.</a>
-            </div>
-            <div class="post-title header-element">
-                <a href="#" class="post-name">lua_debug</a>
-            </div>
-        </div>
-    
 </header>
 
         <!-- fixed footer -->
@@ -299,79 +272,24 @@
 
 
 
-    height:50vh;
-
 ">
     
     <!-- 主页  -->
-    
-        
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-                lua_debug
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-                
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页 meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vscode调式lua源码">vscode调式lua源码</a>
-    
-</div>
-
-                
-                
-                    <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">221</span>Reading time: <span class="post-count reading-time">1 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <!-- 撰写日期 -->
-                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2023/07/13</span>
-                    <!-- busuanzi -->
-                    
-                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
-                            <span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    
-                    <!-- 文章分享 -->
-                    <span class="share-wrapper">
-                        <span class="iconfont-archer share-icon">&#xe71d;</span>
-                        <span class="share-text">Share</span>
-                        <ul class="share-list">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -501,87 +419,66 @@
 
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
-                <main class="main post-page">
-    <article class="article-entry">
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
-<li>搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为<a target="_blank" rel="noopener" href="http://www.lua.org/versions.html">http://www.lua.org/versions.html</a></li>
-</ul>
-<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><ul>
-<li><p>vscode的插件准备（有安装code runner的需要禁止用）</p>
-<p><img src="/image-20230713213431524.png" alt="image-20230713213431524"></p>
-</li>
-<li><p>准备一个vscode工程目录如下：</p>
-<p><img src="/image-20230713212717098.png" alt="image-20230713212717098"></p>
-</li>
-<li><p>把lua-5.3.6的源文件复制一份到include文件夹和src，然后使用<code>del *h</code>或<code>del *c</code>删除对应不需要的文件夹。如图：</p>
-<p><img src="/image-20230713213040757.png" alt="image-20230713213040757"></p>
-</li>
-<li><p>然后需要注释掉lua.c源码的int main和luac.c源码的int main的入口</p>
-<p><img src="/image-20230713213755472.png" alt="image-20230713213755472"></p>
-</li>
-</ul>
-<p><img src="/image-20230713213822227.png" alt="image-20230713213822227"></p>
-<ul>
-<li><p>vscode调式c配置，首先使用<code>shift</code>+<code>ctrl</code>+<code>p</code>,如下图所示，会生成<code>c_cpp_properties.json</code>文件，如图</p>
-<p><img src="/image-20230713214521760.png" alt="image-20230713214521760"></p>
-</li>
-<li><p>在&#96;&#96;文件里添加这一条规则，这样头文件不会是红线了</p>
-<p><img src="/image-20230713214804242.png" alt="image-20230713214804242"></p>
-</li>
-<li><p>接下来配置&#96;&#96;</p>
-<p><img src="/image-20230713214851701.png" alt="image-20230713214851701"></p>
-</li>
-<li><p>创建如下文件在src里，<code>testlua.c, testlua.lua</code>,对应的内容为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure></li>
-</ul>
-
-    </article>
-    <!-- license -->
+                <main class="main index-page">
     
-    <!-- paginator -->
-    <ul class="post-paginator">
-        <li class="next">
+        
+        
+        
+        
             
-        </li>
-        <li class="previous">
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2022/11/27/mysql/">
+                
+                <span class="abstract-title-text">一次mysql源码安装</span>
+            </a>
+            <div class="abstract-content">
+                
+需要准备的条件
+
+cmake
+gcc
+boost1.59.0
+
+
+这里贴出我对应的依赖版本(由于图片加载太慢了)
+12camke version 3.25.0-rclgcc (GCC) 12.2.0
+
+mysql版本对应的依赖boost版本必须要匹配，编译过程如果有报错信息boost要求对应的版本
+
+这里选择的是mysql5.7.17,mysql源码链接
+
+boost对应的版本库,选择需要的版本对应download就行,boost版本
+
+下载对应好需要的依赖就行,就开始解压过程，以mysql源码为例子
+123cd /home/soft/wget https://github.com/m...
+            </div>
+            <!-- read more -->
             
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2023/07/13/hexo-note/" title="hexo_note">
-                    <div class="prevTitle">hexo_note</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- comment -->
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2022/12/11">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/11/27</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
     
-        <div class="post-comment">
-            <!-- 来必力 City 版安装代码 -->
-
-
-            
-
-            
-
-            
-
-            <!-- utteranc评论 -->
-
-
-            <!-- partial('_partial/comment/changyan') -->
-            <!--PC版-->
-
-
-            
-            
-
-            
-
-        </div>
     
-    <!-- timeliness note -->
-    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+        <a class="post-tag" href="javascript:void(0);" data-tags="mysql">mysql</a>
     
-    <!-- Mathjax -->
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+    <!-- paginator  -->
+    
+        <nav class="page-nav">
+            <a class="extend prev" rel="prev" href="/archives/">&lt; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+        </nav>
     
 </main>
 
@@ -672,23 +569,6 @@
 
         </div>
         <!-- toc -->
-        
-            <div class="toc-wrapper toc-wrapper-loding" style=
-
-
-
-
-
-
-
-    top:50vh;
-
->
-                <div class="toc-catalog">
-                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-                </div>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li></ol>
-            </div>
         
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
@@ -1003,8 +883,6 @@
         <!-- CNZZ -->
         
         <!-- async load share.js -->
-        
-            <script src="/scripts/share.js?v=20211217" async></script>
         
         <!-- mermaid -->
         

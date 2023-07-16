@@ -19,32 +19,23 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="前言 搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http:&#x2F;&#x2F;www.lua.org&#x2F;versions.html  正文 vscode的插件准备（有安装code runner的需要禁止用）   准备一个vscode工程目录如下：   把lua-5.3.6的源文件复制一份到include文件夹和src，然">
+    <meta name="description" content="战斗分析 战斗需要的数据(怪物) 首先需要怪物组id列表，决定玩家打几组怪物 打的回合数 攻击者的战斗列表 怪物的等级列表 客户端的其他数据(地图，是否负伤, 阵法id) 法则数据列表 初始血量列表  需知前提 怪物同样需要构造战斗列表，战力一般都是通过属性计算的 注意站位信息，3人的队伍，可能前排一个，也有可能前排两个,有啥不同呢，因为打前排和打后排伤害是不同的。 战斗最好在里面有动态测试标志。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lua_debug">
-<meta property="og:url" content="http://example.com/2023/07/13/lua-debug/index.html">
+<meta property="og:title" content="游戏开发">
+<meta property="og:url" content="http://example.com/2023/04/30/battle/index.html">
 <meta property="og:site_name" content="game development">
-<meta property="og:description" content="前言 搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http:&#x2F;&#x2F;www.lua.org&#x2F;versions.html  正文 vscode的插件准备（有安装code runner的需要禁止用）   准备一个vscode工程目录如下：   把lua-5.3.6的源文件复制一份到include文件夹和src，然">
+<meta property="og:description" content="战斗分析 战斗需要的数据(怪物) 首先需要怪物组id列表，决定玩家打几组怪物 打的回合数 攻击者的战斗列表 怪物的等级列表 客户端的其他数据(地图，是否负伤, 阵法id) 法则数据列表 初始血量列表  需知前提 怪物同样需要构造战斗列表，战力一般都是通过属性计算的 注意站位信息，3人的队伍，可能前排一个，也有可能前排两个,有啥不同呢，因为打前排和打后排伤害是不同的。 战斗最好在里面有动态测试标志。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/image-20230713213431524.png">
-<meta property="og:image" content="http://example.com/image-20230713212717098.png">
-<meta property="og:image" content="http://example.com/image-20230713213040757.png">
-<meta property="og:image" content="http://example.com/image-20230713213755472.png">
-<meta property="og:image" content="http://example.com/image-20230713213822227.png">
-<meta property="og:image" content="http://example.com/image-20230713214521760.png">
-<meta property="og:image" content="http://example.com/image-20230713214804242.png">
-<meta property="og:image" content="http://example.com/image-20230713214851701.png">
-<meta property="article:published_time" content="2023-07-13T13:19:31.000Z">
-<meta property="article:modified_time" content="2023-07-16T02:22:19.291Z">
+<meta property="article:published_time" content="2023-04-30T07:51:35.000Z">
+<meta property="article:modified_time" content="2023-07-16T02:30:56.742Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="vscode调式lua源码">
+<meta property="article:tag" content="game-dev">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/image-20230713213431524.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/literwave.jpg">
     
-    <title>lua_debug · literwave&#39;s Studio</title>
+    <title>游戏开发 · literwave&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -269,7 +260,7 @@
                 <a href="/">literwave game.</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">lua_debug</a>
+                <a href="#" class="post-name">游戏开发</a>
             </div>
         </div>
     
@@ -315,7 +306,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                lua_debug
+                游戏开发
             <!-- 404 -->
             
         </h1>
@@ -335,20 +326,20 @@
                     <div class= post-intro-tags >
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vscode调式lua源码">vscode调式lua源码</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="game-dev">game-dev</a>
     
 </div>
 
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">221</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">620</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2023/07/13</span>
+                    <span class="post-intro-time">2023/04/30</span>
                     <!-- busuanzi -->
                     
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
@@ -503,36 +494,49 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
-<li>搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为<a target="_blank" rel="noopener" href="http://www.lua.org/versions.html">http://www.lua.org/versions.html</a></li>
+        <h3 id="战斗分析"><a href="#战斗分析" class="headerlink" title="战斗分析"></a>战斗分析</h3><ul>
+<li>战斗需要的数据(怪物)</li>
+<li>首先需要怪物组id列表，决定玩家打几组怪物</li>
+<li>打的回合数</li>
+<li>攻击者的战斗列表</li>
+<li>怪物的等级列表</li>
+<li>客户端的其他数据(地图，是否负伤, 阵法id)</li>
+<li>法则数据列表</li>
+<li>初始血量列表</li>
 </ul>
-<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><ul>
-<li><p>vscode的插件准备（有安装code runner的需要禁止用）</p>
-<p><img src="/image-20230713213431524.png" alt="image-20230713213431524"></p>
+<h3 id="需知前提"><a href="#需知前提" class="headerlink" title="需知前提"></a>需知前提</h3><ul>
+<li>怪物同样需要构造战斗列表，战力一般都是通过属性计算的</li>
+<li>注意站位信息，3人的队伍，可能前排一个，也有可能前排两个,有啥不同呢，因为打前排和打后排伤害是不同的。</li>
+<li>战斗最好在里面有动态测试标志。</li>
+</ul>
+<h3 id="得到攻击者和防御者的列表"><a href="#得到攻击者和防御者的列表" class="headerlink" title="得到攻击者和防御者的列表"></a>得到攻击者和防御者的列表</h3><ul>
+<li><p>数据结构为</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">figh_list = &#123;</span><br><span class="line">baseList = &#123;&#125;,</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">baseList = &#123;</span><br><span class="line">    modelInfo = &#123;&#125;,</span><br><span class="line">    propData = &#123;&#125;,</span><br><span class="line">    skillList = &#123;&#125;,</span><br><span class="line">    passiveSkillList = &#123;&#125;,</span><br><span class="line">    gemInfo = &#123;&#125;,</span><br><span class="line">    assistantInfo = &#123;&#125;,</span><br><span class="line">    assistantPropData = &#123;&#125;,</span><br><span class="line">    assistantSkillList = &#123;&#125;,</span><br><span class="line">    assistantPassive = &#123;&#125;,</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>准备一个vscode工程目录如下：</p>
-<p><img src="/image-20230713212717098.png" alt="image-20230713212717098"></p>
-</li>
-<li><p>把lua-5.3.6的源文件复制一份到include文件夹和src，然后使用<code>del *h</code>或<code>del *c</code>删除对应不需要的文件夹。如图：</p>
-<p><img src="/image-20230713213040757.png" alt="image-20230713213040757"></p>
-</li>
-<li><p>然后需要注释掉lua.c源码的int main和luac.c源码的int main的入口</p>
-<p><img src="/image-20230713213755472.png" alt="image-20230713213755472"></p>
+<li><p>首先遍历怪物列表，得到怪物的战斗属性，怪物超过五个的话，还有个<code>defex</code>结构</p>
 </li>
 </ul>
-<p><img src="/image-20230713213822227.png" alt="image-20230713213822227"></p>
-<ul>
-<li><p>vscode调式c配置，首先使用<code>shift</code>+<code>ctrl</code>+<code>p</code>,如下图所示，会生成<code>c_cpp_properties.json</code>文件，如图</p>
-<p><img src="/image-20230713214521760.png" alt="image-20230713214521760"></p>
+<h3 id="战斗计算所需要的一些数据"><a href="#战斗计算所需要的一些数据" class="headerlink" title="战斗计算所需要的一些数据"></a>战斗计算所需要的一些数据</h3><ul>
+<li>攻击者的战斗列表，防御者的战斗列表，<code>attackex</code>, <code>defex</code>,回合数，测试标志，地图id，攻击者的队伍类型站位，防御者的队伍站位，法则数据，多少回合结束算赢。</li>
+</ul>
+<h3 id="做在agent里面的战斗"><a href="#做在agent里面的战斗" class="headerlink" title="做在agent里面的战斗"></a>做在agent里面的战斗</h3><ul>
+<li>使用<code>_G.fightData</code> &#x3D; {}，这里为啥可以这样做呢，因为<code>agent</code>服务是一个单线程的<code>lua</code>虚拟机，使用一定会按顺序计算战斗。</li>
+</ul>
+<h3 id="战斗计算流程"><a href="#战斗计算流程" class="headerlink" title="战斗计算流程"></a>战斗计算流程</h3><ul>
+<li><p>清除被动技能数据列表</p>
 </li>
-<li><p>在&#96;&#96;文件里添加这一条规则，这样头文件不会是红线了</p>
-<p><img src="/image-20230713214804242.png" alt="image-20230713214804242"></p>
+<li><p>拷贝一份战斗数据，数据结构如下</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">propFight = <span class="built_in">table</span>.deepcopy(propData)</span><br><span class="line">baseList.propData = <span class="built_in">table</span>.deepcopy(propData)</span><br><span class="line">figh_list.baseList.propFight.baseList = figh_list.baseList</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>接下来配置&#96;&#96;</p>
-<p><img src="/image-20230713214851701.png" alt="image-20230713214851701"></p>
+<li><p>写入战报站位信息以及地图信息</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--写入站位信息及地图id &#123;攻方站位类型(0: 5人站位, 1: 3人站位 2: 1人站位), 守方站位类型, 地图id, 回合上限数, 攻方阵法id, 守方阵法id&#125;,</span></span><br><span class="line">	table_insert(fightLog, &#123;attackTeamType <span class="keyword">or</span> <span class="number">0</span>, defTeamType <span class="keyword">or</span> <span class="number">0</span>, mapId <span class="keyword">or</span> <span class="number">0</span>, cycNum, (attack.zhenFa <span class="keyword">and</span> attack.zhenFa[<span class="number">1</span>] <span class="keyword">or</span> <span class="number">0</span>), (def.zhenFa <span class="keyword">and</span> def.zhenFa[<span class="number">1</span>] <span class="keyword">or</span> <span class="number">0</span>)&#125;)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>创建如下文件在src里，<code>testlua.c, testlua.lua</code>,对应的内容为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure></li>
+<li><p>写入战报战斗初始信息，比如弟子血量和弟子法宝能量</p>
+</li>
+<li><p>写入战报后援数量，就是<code>attackEx</code>和<code>defEx</code></p>
+</li>
+<li><p>大于一回合的时候才判断下重生和复活的技能，不可能第一回合就重生的，第一回合的时候，激活一下第一回的被动技能，其他回合判断一下循环的被动技能</p>
+</li>
 </ul>
 
     </article>
@@ -542,12 +546,17 @@
     <ul class="post-paginator">
         <li class="next">
             
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2023/07/03/%E5%85%AB%E8%82%A1%E6%96%87/" title="">
+                    <div class="nextTitle">[Untitled Post]</div>
+                </a>
+            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2023/07/13/hexo-note/" title="hexo_note">
-                    <div class="prevTitle">hexo_note</div>
+                <a href="/2023/04/20/zmdb/" title="游戏开发之宗门大比">
+                    <div class="prevTitle">游戏开发之宗门大比</div>
                 </a>
             
         </li>
@@ -687,7 +696,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%98%E6%96%97%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">战斗分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E7%9F%A5%E5%89%8D%E6%8F%90"><span class="toc-number">2.</span> <span class="toc-text">需知前提</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%97%E5%88%B0%E6%94%BB%E5%87%BB%E8%80%85%E5%92%8C%E9%98%B2%E5%BE%A1%E8%80%85%E7%9A%84%E5%88%97%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">得到攻击者和防御者的列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%98%E6%96%97%E8%AE%A1%E7%AE%97%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E4%B8%80%E4%BA%9B%E6%95%B0%E6%8D%AE"><span class="toc-number">4.</span> <span class="toc-text">战斗计算所需要的一些数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9A%E5%9C%A8agent%E9%87%8C%E9%9D%A2%E7%9A%84%E6%88%98%E6%96%97"><span class="toc-number">5.</span> <span class="toc-text">做在agent里面的战斗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%98%E6%96%97%E8%AE%A1%E7%AE%97%E6%B5%81%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">战斗计算流程</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
