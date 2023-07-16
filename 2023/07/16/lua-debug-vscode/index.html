@@ -26,19 +26,19 @@
 <meta property="og:site_name" content="game development">
 <meta property="og:description" content="前言 搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http:&#x2F;&#x2F;www.lua.org&#x2F;versions.html  正文 vscode的插件准备（有安装code runner的需要禁止用）   准备一个vscode工程目录如下：   把lua-5.3.6的源文件复制一份到include文件夹和src，然">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/image-20230713213428521-16894751658413.png">
-<meta property="og:image" content="http://example.com/images/image-20230713212717098-16894753214594.png">
-<meta property="og:image" content="http://example.com/images/image-20230713213040757-16894753562435.png">
-<meta property="og:image" content="http://example.com/images/image-20230713213755472-16894753784776.png">
-<meta property="og:image" content="http://example.com/images/image-20230713213822227-16894753870947.png">
-<meta property="og:image" content="http://example.com/images/image-20230713214521760-168947541986511.png">
-<meta property="og:image" content="http://example.com/images/image-20230713214804242-168947543491812.png">
-<meta property="og:image" content="http://example.com/images/image-20230713214851701-168947549716613.png">
+<meta property="og:image" content="http://example.com/image-20230713213428521-16894751658413.png">
+<meta property="og:image" content="http://example.com/image-20230713212717098-16894753214594.png">
+<meta property="og:image" content="http://example.com/image-20230713213040757-16894753562435.png">
+<meta property="og:image" content="http://example.com/image-20230713213755472-16894753784776.png">
+<meta property="og:image" content="http://example.com/image-20230713213822227-16894753870947.png">
+<meta property="og:image" content="http://example.com/image-20230713214521760-168947541986511-168947952943815.png">
+<meta property="og:image" content="http://example.com/image-20230713214804242-168947543491812-168947953732016.png">
+<meta property="og:image" content="http://example.com/image-20230713214851701-168947549716613-168947953967517.png">
 <meta property="article:published_time" content="2023-07-16T02:41:06.000Z">
-<meta property="article:modified_time" content="2023-07-16T03:36:12.595Z">
+<meta property="article:modified_time" content="2023-07-16T03:52:22.563Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/image-20230713213428521-16894751658413.png">
+<meta name="twitter:image" content="http://example.com/image-20230713213428521-16894751658413.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/literwave.jpg">
@@ -505,26 +505,26 @@
 </ul>
 <h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><ul>
 <li><p>vscode的插件准备（有安装code runner的需要禁止用）</p>
-<p><img src="/../../images/image-20230713213428521-16894751658413.png" alt="image-20230713213428521-16894751658413"></p>
+<p><img src="/image-20230713213428521-16894751658413.png" alt="image-20230713213428521-16894751658413"></p>
 </li>
 <li><p>准备一个vscode工程目录如下：</p>
-<p><img src="/../../images/image-20230713212717098-16894753214594.png" alt="image-20230713212717098-16894753214594"></p>
+<p><img src="/image-20230713212717098-16894753214594.png" alt="image-20230713212717098-16894753214594"></p>
 </li>
 <li><p>把lua-5.3.6的源文件复制一份到include文件夹和src，然后使用<code>del *h</code>或<code>del *c</code>删除对应不需要的文件夹。如图：</p>
-<p><img src="/../../images/image-20230713213040757-16894753562435.png" alt="image-20230713213040757-16894753562435"></p>
+<p><img src="/image-20230713213040757-16894753562435.png" alt="image-20230713213040757-16894753562435"></p>
 </li>
 <li><p>然后需要注释掉lua.c源码的int main和luac.c源码的int main的入口</p>
-<p><img src="/../../images/image-20230713213755472-16894753784776.png" alt="image-20230713213755472-16894753784776"></p>
-<p><img src="/../../images/image-20230713213822227-16894753870947.png" alt="image-20230713213822227-16894753870947"></p>
+<p><img src="/image-20230713213755472-16894753784776.png" alt="image-20230713213755472-16894753784776"></p>
+<p><img src="/image-20230713213822227-16894753870947.png" alt="image-20230713213822227-16894753870947"></p>
 </li>
 <li><p>vscode调式c配置，首先使用<code>shift</code>+<code>ctrl</code>+<code>p</code>,如下图所示，会生成<code>c_cpp_properties.json</code>文件，如图</p>
-<p><img src="/../../images/image-20230713214521760-168947541986511.png" alt="image-20230713214521760-168947541986511"></p>
+<p><img src="/image-20230713214521760-168947541986511-168947952943815.png" alt="image-20230713214521760-168947541986511"></p>
 </li>
 <li><p>在&#96;&#96;文件里添加这一条规则，这样头文件不会是红线了</p>
-<p><img src="/../../images/image-20230713214804242-168947543491812.png" alt="image-20230713214804242-168947543491812"></p>
+<p><img src="/image-20230713214804242-168947543491812-168947953732016.png" alt="image-20230713214804242-168947543491812"></p>
 </li>
 <li><p>接下来配置&#96;&#96;</p>
-<p><img src="/../../images/image-20230713214851701-168947549716613.png" alt="image-20230713214851701"></p>
+<p><img src="/image-20230713214851701-168947549716613-168947953967517.png" alt="image-20230713214851701"></p>
 </li>
 <li><p>创建如下文件在src里，<code>testlua.c, testlua.lua</code>,对应的内容为</p>
 </li>
@@ -752,6 +752,8 @@
         
         
     
+        
+        
         
         
         
