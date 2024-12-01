@@ -600,6 +600,47 @@ https://blog.csdn.net/Xupixel/article/details/120405501
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/04/30/Interview/">
+                
+                <span class="abstract-title-text">游戏开发</span>
+            </a>
+            <div class="abstract-content">
+                内存对齐​	内存对齐是为了使用空间换时间的一种策略
+为什么需要内存对齐​	cpu访问内存时，并不是逐个字节访问，而是以字长为单位访问，比如64位的cpu，字长为8个字节，那么cpu访问内存的单位也是4字节。(忽略cpu访问缓存而不是内存)
+​	比如16个字节，一次读取8个字节那么只需要读取2次。
+举例​	假如有以下结构体
+1234struct Test&#123;	uint8_t a;	uint64_t b;&#125;
+
+​	a占一个字节，b占8个字节，如果按照内存对齐的方式，cpu只需要读取两次,第一次读取a，第二次读取b。如果不是按照内存对齐方式，第一次读取a变量，第二次读取b变量...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2024/12/01">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/04/30</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="game-dev">game-dev</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/04/20/zmdb/">
                 
                 <span class="abstract-title-text">游戏开发之宗门大比</span>
@@ -830,7 +871,20 @@ config_file是启动skynet执行的配置文件，首先会new一个lua vm,加�
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -889,7 +943,7 @@ config_file是启动skynet执行的配置文件，首先会new一个lua vm,加�
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -925,6 +979,12 @@ config_file是启动skynet执行的配置文件，首先会new一个lua vm,加�
         <li class="archive-post-item">
             <span class="archive-post-date">04/30</span>
             <a class="archive-post-title" href="/2023/04/30/battle/">游戏开发</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span>
+            <a class="archive-post-title" href="/2023/04/30/Interview/">游戏开发</a>
         </li>
     
         
