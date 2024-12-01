@@ -443,6 +443,50 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2024/12/01/skiplist/">
+                
+                <span class="abstract-title-text">skiplist</span>
+            </a>
+            <div class="abstract-content">
+                前言
+排行榜是每个游戏常有的功能，大部分情况下分为两种，一种是定时排行，另一种是实时排行。而排行榜的底层是使用redis的zset数据结构，为啥不直接用redis，如果把redis整个都集成过来，会比较臃肿，如果游戏框架里并没有使用到redis，并不需要整个redis都搬过来。如果对跳表的实现感兴趣，就可以通过这篇博客了解一下redis zset的底层实现
+
+源码地址
+https://github.com/xjdrew/lua-zset.git
+
+目录结构
+正文
+创建zset接口 - slCreate
+1234567891011121314151617181920212223242526...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2024/12/01">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2024/12/01</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="排行榜">排行榜</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/07/29/lua-mix/">
                 
                 <span class="abstract-title-text">lua-mix</span>
@@ -816,54 +860,6 @@ lua使用lua_TValue表示lua中所有的类型，具体如下:
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/12/03/csapp/">
-                
-                <span class="abstract-title-text">csapp</span>
-            </a>
-            <div class="abstract-content">
-                c语言编译过程
-预处理
-1g++ -E test.cpp -o test.i
-
-编译
-1g++ -S test.i - o test.s
-
-汇编
-1g++ -c test.s -o test.o
-
-链接
-
-g++ test.o -o test
-1234567c语言编译参数* -O[n]优化源代码,一般用`-O2`* -l和-L
-链接glog库
-g++ -lglog test.cpp
-
--l 参数在/lib和/usr/lib/和/usr/local/lib里的库
-如果库没有在上面三个目录里，需要使用-L参数指定库文件所在目录
-123* -I指定头文件搜索目录
--I
-默认在/usr/incl...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/06/28">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/03</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1116,7 +1112,20 @@ g++ -lglog test.cpp
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1183,7 +1192,7 @@ g++ -lglog test.cpp
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 12
+        Total : 13
         </div>
         <!-- search  -->
         
@@ -1193,6 +1202,21 @@ g++ -lglog test.cpp
     
         
             
+            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span>
+            <a class="archive-post-title" href="/2024/12/01/skiplist/">skiplist</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
@@ -1312,6 +1336,11 @@ g++ -lglog test.cpp
             <span class="sidebar-tag-name" data-tags="lua源码">
                 <span class="iconfont-archer">&#xe606;</span>
                 lua源码
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="排行榜">
+                <span class="iconfont-archer">&#xe606;</span>
+                排行榜
             </span>
         
     </div>

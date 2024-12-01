@@ -428,6 +428,54 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2022/12/03/csapp/">
+                
+                <span class="abstract-title-text">csapp</span>
+            </a>
+            <div class="abstract-content">
+                c语言编译过程
+预处理
+1g++ -E test.cpp -o test.i
+
+编译
+1g++ -S test.i - o test.s
+
+汇编
+1g++ -c test.s -o test.o
+
+链接
+
+g++ test.o -o test
+1234567c语言编译参数* -O[n]优化源代码,一般用`-O2`* -l和-L
+链接glog库
+g++ -lglog test.cpp
+
+-l 参数在/lib和/usr/lib/和/usr/local/lib里的库
+如果库没有在上面三个目录里，需要使用-L参数指定库文件所在目录
+123* -I指定头文件搜索目录
+-I
+默认在/usr/incl...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/06/28">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/03</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2022/12/03/game-dev/">
                 
                 <span class="abstract-title-text">游戏开发</span>
@@ -680,7 +728,20 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -747,7 +808,7 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 12
+        Total : 13
         </div>
         <!-- search  -->
         
@@ -757,6 +818,21 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
     
         
             
+            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span>
+            <a class="archive-post-title" href="/2024/12/01/skiplist/">skiplist</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
@@ -876,6 +952,11 @@ boost对应的版本库,选择需要的版本对应download就行,boost版本
             <span class="sidebar-tag-name" data-tags="lua源码">
                 <span class="iconfont-archer">&#xe606;</span>
                 lua源码
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="排行榜">
+                <span class="iconfont-archer">&#xe606;</span>
+                排行榜
             </span>
         
     </div>

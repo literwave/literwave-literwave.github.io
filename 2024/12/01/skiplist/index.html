@@ -19,23 +19,25 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="创建一个md文件命令hexo new xxx 123需要hexo cleanhexo d -g  https:&#x2F;&#x2F;blog.csdn.net&#x2F;Xupixel&#x2F;article&#x2F;details&#x2F;120405501">
+    <meta name="description" content="前言 排行榜是每个游戏常有的功能，大部分情况下分为两种，一种是定时排行，另一种是实时排行。而排行榜的底层是使用redis的zset数据结构，为啥不直接用redis，如果把redis整个都集成过来，会比较臃肿，如果游戏框架里并没有使用到redis，并不需要整个redis都搬过来。如果对跳表的实现感兴趣，就可以通过这篇博客了解一下redis zset的底层实现  源码地址 https:&#x2F;&#x2F;github">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo_note">
-<meta property="og:url" content="http://example.com/2023/07/13/hexo-note/index.html">
+<meta property="og:title" content="skiplist">
+<meta property="og:url" content="http://example.com/2024/12/01/skiplist/index.html">
 <meta property="og:site_name" content="game development">
-<meta property="og:description" content="创建一个md文件命令hexo new xxx 123需要hexo cleanhexo d -g  https:&#x2F;&#x2F;blog.csdn.net&#x2F;Xupixel&#x2F;article&#x2F;details&#x2F;120405501">
+<meta property="og:description" content="前言 排行榜是每个游戏常有的功能，大部分情况下分为两种，一种是定时排行，另一种是实时排行。而排行榜的底层是使用redis的zset数据结构，为啥不直接用redis，如果把redis整个都集成过来，会比较臃肿，如果游戏框架里并没有使用到redis，并不需要整个redis都搬过来。如果对跳表的实现感兴趣，就可以通过这篇博客了解一下redis zset的底层实现  源码地址 https:&#x2F;&#x2F;github">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-13T12:42:20.000Z">
-<meta property="article:modified_time" content="2024-12-01T09:49:06.477Z">
+<meta property="og:image" content="http://example.com/images/image-20241201164900480.png">
+<meta property="article:published_time" content="2024-12-01T04:57:21.000Z">
+<meta property="article:modified_time" content="2024-12-01T09:50:31.649Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="hexo相关命令">
+<meta property="article:tag" content="排行榜">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/image-20241201164900480.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/literwave.jpg">
     
-    <title>hexo_note · literwave&#39;s Studio</title>
+    <title>skiplist · literwave&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -260,7 +262,7 @@
                 <a href="/">literwave game.</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">hexo_note</a>
+                <a href="#" class="post-name">skiplist</a>
             </div>
         </div>
     
@@ -306,7 +308,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                hexo_note
+                skiplist
             <!-- 404 -->
             
         </h1>
@@ -326,20 +328,20 @@
                     <div class= post-intro-tags >
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="hexo相关命令">hexo相关命令</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="排行榜">排行榜</a>
     
 </div>
 
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">25</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">962</span>Reading time: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2023/07/13</span>
+                    <span class="post-intro-time">2024/12/01</span>
                     <!-- busuanzi -->
                     
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
@@ -494,11 +496,35 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <ul>
-<li><p>创建一个<code>md</code>文件命令<code>hexo new xxx</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">需要</span><br><span class="line">hexo clean</span><br><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>排行榜是每个游戏常有的功能，大部分情况下分为两种，一种是定时排行，另一种是实时排行。而排行榜的底层是使用<code>redis</code>的<code>zset</code>数据结构，为啥不直接用<code>redis</code>，如果把<code>redis</code>整个都集成过来，会比较臃肿，如果游戏框架里并没有使用到<code>redis</code>，并不需要整个<code>redis</code>都搬过来。如果对跳表的实现感兴趣，就可以通过这篇博客了解一下<code>redis zset</code>的底层实现</li>
+</ul>
+<h3 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/xjdrew/lua-zset.git">https://github.com/xjdrew/lua-zset.git</a></li>
+</ul>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="/../../images/image-20241201164900480.png" alt="image-20241201164900480"></p>
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><ul>
+<li><p>创建<code>zset</code>接口 - <code>slCreate</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">skiplist *<span class="title function_">slCreate</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line">    skiplist *sl;</span><br><span class="line"></span><br><span class="line">    sl = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(*sl));</span><br><span class="line">    sl-&gt;level = <span class="number">1</span>;</span><br><span class="line">    sl-&gt;length = <span class="number">0</span>;</span><br><span class="line">    sl-&gt;header = slCreateNode(SKIPLIST_MAXLEVEL, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">for</span> (j=<span class="number">0</span>; j &lt; SKIPLIST_MAXLEVEL; j++) &#123;</span><br><span class="line">        sl-&gt;header-&gt;level[j].forward = <span class="literal">NULL</span>;</span><br><span class="line">        sl-&gt;header-&gt;level[j].span = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    sl-&gt;header-&gt;backward = <span class="literal">NULL</span>;</span><br><span class="line">    sl-&gt;tail = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> sl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">skiplistNode</span> &#123;</span></span><br><span class="line">    slobj* obj;</span><br><span class="line">    <span class="type">double</span> score;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">skiplistNode</span> *<span class="title">backward</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">skiplistLevel</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">skiplistNode</span> *<span class="title">forward</span>;</span></span><br><span class="line">        <span class="type">unsigned</span> <span class="type">int</span> span;</span><br><span class="line">    &#125;level[];</span><br><span class="line">&#125; skiplistNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">skiplist</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">skiplistNode</span> *<span class="title">header</span>, *<span class="title">tail</span>;</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> length;</span><br><span class="line">    <span class="type">int</span> level;</span><br><span class="line">&#125; skiplist;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面是创建<code>skiplist</code>数据结构的代码，看看<code>skiplist</code>结构体各字段含义。<ul>
+<li><code>slCreateNode(SKIPLIST_MAXLEVEL, 0, NULL);</code>创建一个节点，因为是头结点，所以一次性分配为最高的层。</li>
+<li><code>sl-&gt;level</code>是所有节点中最高的层，也可以说是头结点的层高，因为起点是从头结点开始查找一个<code>item</code>的，头结点必须有最高的层数。</li>
+<li><code>sl-&gt;length</code>所拥有的节点数。</li>
+</ul>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Xupixel/article/details/120405501">https://blog.csdn.net/Xupixel/article/details/120405501</a></p>
+</ul>
+</li>
+<li><p>插入一个节点，也就是插入排行榜中的一个<code>item</code>,这里一定是新增，而不是更新排行榜中一个<code>item</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">slInsert</span><span class="params">(skiplist *sl, <span class="type">double</span> score, slobj *obj)</span> &#123;</span><br><span class="line">    skiplistNode *update[SKIPLIST_MAXLEVEL], *x;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> rank[SKIPLIST_MAXLEVEL];</span><br><span class="line">    <span class="type">int</span> i, level;</span><br><span class="line"></span><br><span class="line">    x = sl-&gt;header;</span><br><span class="line">    <span class="keyword">for</span> (i = sl-&gt;level<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="comment">/* store rank that is crossed to reach the insert position */</span></span><br><span class="line">        rank[i] = i == (sl-&gt;level<span class="number">-1</span>) ? <span class="number">0</span> : rank[i+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">while</span> (x-&gt;level[i].forward &amp;&amp;</span><br><span class="line">            (x-&gt;level[i].forward-&gt;score &lt; score ||</span><br><span class="line">                (x-&gt;level[i].forward-&gt;score == score &amp;&amp;</span><br><span class="line">                compareslObj(x-&gt;level[i].forward-&gt;obj,obj) &lt; <span class="number">0</span>))) &#123;</span><br><span class="line">            rank[i] += x-&gt;level[i].span;</span><br><span class="line">            x = x-&gt;level[i].forward;</span><br><span class="line">        &#125;</span><br><span class="line">        update[i] = x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* we assume the key is not already inside, since we allow duplicated</span></span><br><span class="line"><span class="comment">     * scores, and the re-insertion of score and redis object should never</span></span><br><span class="line"><span class="comment">     * happen since the caller of slInsert() should test in the hash table</span></span><br><span class="line"><span class="comment">     * if the element is already inside or not. */</span></span><br><span class="line">    level = slRandomLevel();</span><br><span class="line">    <span class="keyword">if</span> (level &gt; sl-&gt;level) &#123;</span><br><span class="line">        <span class="keyword">for</span> (i = sl-&gt;level; i &lt; level; i++) &#123;</span><br><span class="line">            rank[i] = <span class="number">0</span>;</span><br><span class="line">            update[i] = sl-&gt;header;</span><br><span class="line">            update[i]-&gt;level[i].span = sl-&gt;length;</span><br><span class="line">        &#125;</span><br><span class="line">        sl-&gt;level = level;</span><br><span class="line">    &#125;</span><br><span class="line">    x = slCreateNode(level,score,obj);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; level; i++) &#123;</span><br><span class="line">        x-&gt;level[i].forward = update[i]-&gt;level[i].forward;</span><br><span class="line">        update[i]-&gt;level[i].forward = x;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* update span covered by update[i] as x is inserted here */</span></span><br><span class="line">        x-&gt;level[i].span = update[i]-&gt;level[i].span - (rank[<span class="number">0</span>] - rank[i]);</span><br><span class="line">        update[i]-&gt;level[i].span = (rank[<span class="number">0</span>] - rank[i]) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* increment span for untouched levels */</span></span><br><span class="line">    <span class="keyword">for</span> (i = level; i &lt; sl-&gt;level; i++) &#123;</span><br><span class="line">        update[i]-&gt;level[i].span++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    x-&gt;backward = (update[<span class="number">0</span>] == sl-&gt;header) ? <span class="literal">NULL</span> : update[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">if</span> (x-&gt;level[<span class="number">0</span>].forward)</span><br><span class="line">        x-&gt;level[<span class="number">0</span>].forward-&gt;backward = x;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        sl-&gt;tail = x;</span><br><span class="line">    sl-&gt;length++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>skiplistNode *update[SKIPLIST_MAXLEVEL], *x;</code> update存放的是需要调整的节点，这里分三种情况来说明这个函数所有的流程<ul>
+<li>当插入<code>item</code>是第一个<code>item</code>的时候，也就是头结点之后的第一个节点，<code>update[i] = x;</code>需要调整的就是头结点，当<code>level</code> 不超过头结点的<code>level</code>的时候，就不会执行<code>(level &gt; sl-&gt;level)</code>里的循环，帮第一个<code>item</code>创建一个节点，进入<code>for (i = 0; i &lt; level; i++)</code>去调整节点，其实这里我之前困惑于为什么<code>update[i]</code>一定不是<code>NULL</code>？因为这里<code>i</code>是小于刚创建的节点<code>level</code>，所以肯定有相邻的层级调整，而且有且只有一个，所有<code>update[i]</code>一定不是<code>NULL</code>。<code> for (i = level; i &lt; sl-&gt;level; i++)</code>随后高于随机节点的层数<code>span</code>需要自增，因为中间插入了一个节点。</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 
@@ -509,17 +535,12 @@
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2023/07/16/lua-debug-vscode/" title="lua-debug-vscode">
-                    <div class="nextTitle">lua-debug-vscode</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2023/04/30/battle/" title="游戏开发">
-                    <div class="prevTitle">游戏开发</div>
+                <a href="/2023/07/29/lua-mix/" title="lua-mix">
+                    <div class="prevTitle">lua-mix</div>
                 </a>
             
         </li>
@@ -659,7 +680,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="toc-number">2.</span> <span class="toc-text">源码地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">4.</span> <span class="toc-text">正文</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
