@@ -443,6 +443,40 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/07/29/lua-mix/">
+                
+                <span class="abstract-title-text">lua-mix</span>
+            </a>
+            <div class="abstract-content">
+                前言​	这是一篇关于lua源码分析的杂谈，里面混入各种知识
+正文
+static的作用，一个局部变量的创建是在栈区，当出栈的时候，局部变量就销毁了，而使用static 关键字修饰，可以改变变量的生命周期，也就是不会销毁，但是不会改变作用域。使用static修饰全局变量的时候，会使它的作用域变小，也就是外部不可以链接
+
+remalloc函数支持缩容
+
+解析luaL_openlibs
+12345678910111213141516171819202122232425262728293031extern void luaL_openlibs (lua_State *L) &#123;  cons...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/29">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/29</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/07/16/lua-debug-vscode/">
                 
                 <span class="abstract-title-text">lua-debug-vscode</span>
@@ -505,7 +539,7 @@ https://blog.csdn.net/Xupixel/article/details/120405501
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/07/16">
+                <div class="abstract-date" title="Last updated: 2024/12/01">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/13</span>
                 </div>
                 <!-- tags -->
@@ -662,13 +696,14 @@ https://blog.csdn.net/Xupixel/article/details/120405501
 
 正文
 skynet执行的入口文件是skynet_main.c，先来看看int main执行了些什么。
-config_file是启动skynet执行的配置文件，首先会new一个lua vm,加载一下标准库，luaL_loadbufferx(L, load_config, strlen(load_config), &quot;=[skynet config]&quot;, &quot;t&quot;)是编译了load_config（lua会把代码文件看作成一个chunk，并push进栈里，也就是Lclouse,lu...
+
+config_file是启动skynet执行的配置文件，首先会new一个lua vm,加载一下标准库，luaL_loadbufferx(L, load_config, strlen(load_config), &quot;=[skynet config]&quot;, &quot;t&quot;)是编译了load_config（lua会把代码文件看作成一个chunk，并push进栈里，也就是Lclouse,l...
             </div>
             <!-- read more -->
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/07/02">
+                <div class="abstract-date" title="Last updated: 2024/04/20">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/01/02</span>
                 </div>
                 <!-- tags -->
@@ -816,45 +851,6 @@ g++ -lglog test.cpp
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/03</span>
                 </div>
                 <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2022/12/03/game-dev/">
-                
-                <span class="abstract-title-text">游戏开发</span>
-            </a>
-            <div class="abstract-content">
-                目标活动
-前几天在开发一个子活动，突然发现一个问题还蛮容易疏忽的。
-我们的活动框架类似于这样的，存储结构，&#123;[大活动id][子活动id][玩家id]&#125;
-然后策划需求是这样的，经典对需求，类似玩家达到某个条件，然后记录进度。
-说说我的设计吧，起初我在大活动模块里回调到各个子活动onstart函数，也就是活动开始的时候取单服所有玩家的数据把目标任务加上去。然后就交给策划验收了，策划用新号，发现，目标任务居然全都完成了(当客户端没数据的时候，会默认所有任务都完成了)，原因就是拿单服所有玩家的时候发现新进入的玩家是没有这个任务目标的，所有就出现bug了，这个问题在开发设计中是...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2022/12/11">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/12/03</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="game-dev">game-dev</a>
-    
-</div>
-
                 
             </div>
         </article>
@@ -1107,7 +1103,20 @@ g++ -lglog test.cpp
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1166,7 +1175,7 @@ g++ -lglog test.cpp
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -1180,6 +1189,12 @@ g++ -lglog test.cpp
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span>
+            <a class="archive-post-title" href="/2023/07/29/lua-mix/">lua-mix</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">07/16</span>
@@ -1285,14 +1300,14 @@ g++ -lglog test.cpp
                 mysql
             </span>
         
-            <span class="sidebar-tag-name" data-tags="skynet">
-                <span class="iconfont-archer">&#xe606;</span>
-                skynet
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="skynet源码分析">
                 <span class="iconfont-archer">&#xe606;</span>
                 skynet源码分析
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="skynet">
+                <span class="iconfont-archer">&#xe606;</span>
+                skynet
             </span>
         
             <span class="sidebar-tag-name" data-tags="lua源码">

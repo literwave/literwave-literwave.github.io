@@ -19,33 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="前言 搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http:&#x2F;&#x2F;www.lua.org&#x2F;versions.html  正文 vscode的插件准备（有安装code runner的需要禁止用）   准备一个vscode工程目录如下：   把lua-5.3.6的源文件复制一份到include文件夹和src，然">
+    <meta name="description" content="前言​	这是一篇关于lua源码分析的杂谈，里面混入各种知识 正文 static的作用，一个局部变量的创建是在栈区，当出栈的时候，局部变量就销毁了，而使用static 关键字修饰，可以改变变量的生命周期，也就是不会销毁，但是不会改变作用域。使用static修饰全局变量的时候，会使它的作用域变小，也就是外部不可以链接  remalloc函数支持缩容  解析luaL_openlibs 123456789">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lua-debug-vscode">
-<meta property="og:url" content="http://example.com/2023/07/16/lua-debug-vscode/index.html">
+<meta property="og:title" content="lua-mix">
+<meta property="og:url" content="http://example.com/2023/07/29/lua-mix/index.html">
 <meta property="og:site_name" content="game development">
-<meta property="og:description" content="前言 搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为http:&#x2F;&#x2F;www.lua.org&#x2F;versions.html  正文 vscode的插件准备（有安装code runner的需要禁止用）   准备一个vscode工程目录如下：   把lua-5.3.6的源文件复制一份到include文件夹和src，然">
+<meta property="og:description" content="前言​	这是一篇关于lua源码分析的杂谈，里面混入各种知识 正文 static的作用，一个局部变量的创建是在栈区，当出栈的时候，局部变量就销毁了，而使用static 关键字修饰，可以改变变量的生命周期，也就是不会销毁，但是不会改变作用域。使用static修饰全局变量的时候，会使它的作用域变小，也就是外部不可以链接  remalloc函数支持缩容  解析luaL_openlibs 123456789">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/image-20230713213428521-16894751658413.png">
-<meta property="og:image" content="http://example.com/images/image-20230713212717098-16894753214594.png">
-<meta property="og:image" content="http://example.com/images/image-20230713213040757-16894753562435.png">
-<meta property="og:image" content="http://example.com/images/image-20230713213755472-16894753784776.png">
-<meta property="og:image" content="http://example.com/images/image-20230713213822227-16894753870947.png">
-<meta property="og:image" content="http://example.com/images/image-20230713214521760-168947541986511-168947952943815.png">
-<meta property="og:image" content="http://example.com/images/image-20230713214804242-168947543491812.png">
-<meta property="og:image" content="http://example.com/images/image-20230713214851701-168947549716613.png">
-<meta property="og:image" content="http://example.com/images/image-20230716145814354.png">
-<meta property="og:image" content="http://example.com/images/image-20230716150003597.png">
-<meta property="article:published_time" content="2023-07-16T02:41:06.000Z">
-<meta property="article:modified_time" content="2023-07-16T07:02:16.588Z">
+<meta property="article:published_time" content="2023-07-29T04:39:39.000Z">
+<meta property="article:modified_time" content="2023-07-29T13:03:51.459Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/image-20230713213428521-16894751658413.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/literwave.jpg">
     
-    <title>lua-debug-vscode · literwave&#39;s Studio</title>
+    <title>lua-mix · literwave&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -270,7 +259,7 @@
                 <a href="/">literwave game.</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">lua-debug-vscode</a>
+                <a href="#" class="post-name">lua-mix</a>
             </div>
         </div>
     
@@ -316,7 +305,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                lua-debug-vscode
+                lua-mix
             <!-- 404 -->
             
         </h1>
@@ -341,13 +330,13 @@
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">482</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">423</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2023/07/16</span>
+                    <span class="post-intro-time">2023/07/29</span>
                     <!-- busuanzi -->
                     
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
@@ -502,55 +491,22 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
-<li>搜了许多资料，觉得vscode调式c程序的教程有点杂，所以写下这篇博客，使用vscode调用lua源码，版本是lua5.3.6,下载地址为<a target="_blank" rel="noopener" href="http://www.lua.org/versions.html">http://www.lua.org/versions.html</a></li>
-</ul>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​	这是一篇关于lua源码分析的杂谈，里面混入各种知识</p>
 <h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><ul>
-<li><p>vscode的插件准备（有安装code runner的需要禁止用）</p>
-<p><img src="/../../images/image-20230713213428521-16894751658413.png" alt="image-20230713213428521-16894751658413"></p>
+<li><p>static的作用，一个局部变量的创建是在栈区，当出栈的时候，局部变量就销毁了，而使用static 关键字修饰，可以改变变量的生命周期，也就是不会销毁，但是不会改变作用域。使用static修饰全局变量的时候，会使它的作用域变小，也就是外部不可以链接</p>
 </li>
-<li><p>准备一个vscode工程目录如下：</p>
-<p><img src="/../../images/image-20230713212717098-16894753214594.png" alt="image-20230713212717098-16894753214594"></p>
+<li><p><code>remalloc</code>函数支持缩容</p>
 </li>
-<li><p>把lua-5.3.6的源文件复制一份到include文件夹和src，然后使用<code>del *h</code>或<code>del *c</code>删除对应不需要的文件夹。如图：</p>
-<p><img src="/../../images/image-20230713213040757-16894753562435.png" alt="image-20230713213040757-16894753562435"></p>
+<li><p>解析<code>luaL_openlibs</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="type">void</span> <span class="title function_">luaL_openlibs</span> <span class="params">(lua_State *L)</span> &#123;</span><br><span class="line">  <span class="type">const</span> luaL_Reg *lib;</span><br><span class="line">  <span class="comment">/* &quot;require&quot; functions from &#x27;loadedlibs&#x27; and set results to global table */</span></span><br><span class="line">  <span class="keyword">for</span> (lib = loadedlibs; lib-&gt;func; lib++) &#123;</span><br><span class="line">    luaL_requiref(L, lib-&gt;name, lib-&gt;func, <span class="number">1</span>);</span><br><span class="line">    lua_pop(L, <span class="number">1</span>);  <span class="comment">/* remove lib */</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// modname = _G</span></span><br><span class="line"><span class="comment">// openf = luaopen_base</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">void</span> <span class="title function_">luaL_requiref</span> <span class="params">(lua_State *L, <span class="type">const</span> <span class="type">char</span> *modname,</span></span><br><span class="line"><span class="params">                               lua_CFunction openf, <span class="type">int</span> glb)</span> &#123;</span><br><span class="line">  luaL_getsubtable(L, LUA_REGISTRYINDEX, LUA_LOADED_TABLE);</span><br><span class="line">  lua_getfield(L, <span class="number">-1</span>, modname);  <span class="comment">/* LOADED[modname] */</span></span><br><span class="line">  <span class="keyword">if</span> (!lua_toboolean(L, <span class="number">-1</span>)) &#123;  <span class="comment">/* package not already loaded? */</span></span><br><span class="line">    lua_pop(L, <span class="number">1</span>);  <span class="comment">/* remove field */</span></span><br><span class="line">    lua_pushcfunction(L, openf);</span><br><span class="line">    lua_pushstring(L, modname);  <span class="comment">/* argument to open function */</span></span><br><span class="line">    lua_call(L, <span class="number">1</span>, <span class="number">1</span>);  <span class="comment">/* call &#x27;openf&#x27; to open module */</span></span><br><span class="line">    lua_pushvalue(L, <span class="number">-1</span>);  <span class="comment">/* make copy of module (call result) */</span></span><br><span class="line">    lua_setfield(L, <span class="number">-3</span>, modname);  <span class="comment">/* LOADED[modname] = module */</span></span><br><span class="line">  &#125;</span><br><span class="line">  lua_remove(L, <span class="number">-2</span>);  <span class="comment">/* remove LOADED table */</span></span><br><span class="line">  <span class="keyword">if</span> (glb) &#123;</span><br><span class="line">    lua_pushvalue(L, <span class="number">-1</span>);  <span class="comment">/* copy of module */</span></span><br><span class="line">    lua_setglobal(L, modname);  <span class="comment">/* _G[modname] = module */</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">lua_setfield(L, <span class="number">-2</span>, <span class="string">&quot;_G&quot;</span>); 其实会把 最后又会把l-&gt;top <span class="number">-2</span>,其实又回到起点 </span><br></pre></td></tr></table></figure>
 </li>
-<li><p>然后需要注释掉lua.c源码的int main和luac.c源码的int main的入口</p>
-<p><img src="/../../images/image-20230713213755472-16894753784776.png" alt="image-20230713213755472-16894753784776"></p>
-<p><img src="/../../images/image-20230713213822227-16894753870947.png" alt="image-20230713213822227-16894753870947"></p>
+<li><p>函数<code>lua_call</code>其实就是new了一个<code>ci</code>，如果想得到一个返回值其实就是<code>ci-&gt;top + wanted</code>就是函数执行的返回值了</p>
 </li>
-<li><p>vscode调式c配置，首先使用<code>shift</code>+<code>ctrl</code>+<code>p</code>,如下图所示，会生成<code>c_cpp_properties.json</code>文件，如图</p>
-<p><img src="/../../images/image-20230713214521760-168947541986511-168947952943815.png" alt="image-20230713214521760-168947541986511"></p>
+<li><p>lua数据类型，lua的<code>tvalue</code>就包括所有类型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">** Union of all Lua values</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">Value</span> &#123;</span></span><br><span class="line">  GCObject *gc;    <span class="comment">/* collectable objects */</span></span><br><span class="line">  <span class="type">void</span> *p;         <span class="comment">/* light userdata */</span></span><br><span class="line">  <span class="type">int</span> b;           <span class="comment">/* booleans */</span></span><br><span class="line">  lua_CFunction f; <span class="comment">/* light C functions */</span></span><br><span class="line">  lua_Integer i;   <span class="comment">/* integer numbers */</span></span><br><span class="line">  lua_Number n;    <span class="comment">/* float numbers */</span></span><br><span class="line">&#125; Value;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在&#96;&#96;文件里添加这一条规则，这样头文件不会是红线了</p>
-<p><img src="/../../images/image-20230713214804242-168947543491812.png" alt="image-20230713214804242-168947543491812"></p>
-</li>
-<li><p>接下来配置<code>task.json</code></p>
-<p><img src="/../../images/image-20230713214851701-168947549716613.png" alt="image-20230713214851701"></p>
-</li>
-<li><p>task.json的配置如下</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppbuild&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C/C++: gcc.exe build active file&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gcc&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;-g&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;\\src\\*.c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="comment">// &quot;$&#123;fileDirname&#125;\\*.c&quot;,</span></span><br><span class="line">                <span class="string">&quot;-o&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-I&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span><span class="punctuation">,</span></span><br><span class="line">                </span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;fileDirname&#125;&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">            <span class="attr">&quot;group&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;build&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;isDefault&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;detail&quot;</span><span class="punctuation">:</span> <span class="string">&quot;compiler: D:\\environment\\MinGw64\\bin\\gcc.exe&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>c_cpp_properties.json配置如下</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Win32&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;includePath&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;defines&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;_DEBUG&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;UNICODE&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;_UNICODE&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;compilerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;D:/environment/MinGw64/bin/gcc.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c11&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cppStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c++11&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;intelliSenseMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;windows-gcc-x86&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">4</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>创建如下文件在src里，<code>testlua.c, testlua.lua</code>,对应的内容为</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;lua.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;lualib.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;lauxlib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    lua_State* L = luaL_newstate();</span><br><span class="line">    luaL_openlibs(L);</span><br><span class="line"></span><br><span class="line">    luaL_dofile(L, <span class="string">&quot;testlua.lua&quot;</span>);</span><br><span class="line"></span><br><span class="line">    lua_close(L);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;xxx&quot;</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>开始调试</p>
-<ul>
-<li><p>先打断点，如图</p>
-<p><img src="/../../images/image-20230716145814354.png" alt="image-20230716145814354"></p>
-</li>
-<li><p>运行如图</p>
-<p><img src="/../../images/image-20230716150003597.png" alt="image-20230716150003597"></p>
-</li>
-</ul>
-</li>
+<li><p><code>gcobject</code>类型如下，这是需要垃圾回收的类型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GCObject</span> &#123;</span></span><br><span class="line">  GCObject *next; </span><br><span class="line">  lu_byte tt; </span><br><span class="line">  lu_byte marked;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
     </article>
@@ -560,17 +516,12 @@
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2023/07/29/lua-mix/" title="lua-mix">
-                    <div class="nextTitle">lua-mix</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2023/07/13/hexo-note/" title="hexo_note">
-                    <div class="prevTitle">hexo_note</div>
+                <a href="/2023/07/16/lua-debug-vscode/" title="lua-debug-vscode">
+                    <div class="prevTitle">lua-debug-vscode</div>
                 </a>
             
         </li>

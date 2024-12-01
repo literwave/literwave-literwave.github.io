@@ -428,6 +428,40 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/07/29/lua-mix/">
+                
+                <span class="abstract-title-text">lua-mix</span>
+            </a>
+            <div class="abstract-content">
+                前言​	这是一篇关于lua源码分析的杂谈，里面混入各种知识
+正文
+static的作用，一个局部变量的创建是在栈区，当出栈的时候，局部变量就销毁了，而使用static 关键字修饰，可以改变变量的生命周期，也就是不会销毁，但是不会改变作用域。使用static修饰全局变量的时候，会使它的作用域变小，也就是外部不可以链接
+
+remalloc函数支持缩容
+
+解析luaL_openlibs
+12345678910111213141516171819202122232425262728293031extern void luaL_openlibs (lua_State *L) &#123;  cons...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/07/29">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/29</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/07/16/lua-debug-vscode/">
                 
                 <span class="abstract-title-text">lua-debug-vscode</span>
@@ -490,7 +524,7 @@ https://blog.csdn.net/Xupixel/article/details/120405501
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/07/16">
+                <div class="abstract-date" title="Last updated: 2024/12/01">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/13</span>
                 </div>
                 <!-- tags -->
@@ -698,7 +732,20 @@ https://blog.csdn.net/Xupixel/article/details/120405501
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -757,7 +804,7 @@ https://blog.csdn.net/Xupixel/article/details/120405501
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -771,6 +818,12 @@ https://blog.csdn.net/Xupixel/article/details/120405501
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span>
+            <a class="archive-post-title" href="/2023/07/29/lua-mix/">lua-mix</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">07/16</span>
@@ -876,14 +929,14 @@ https://blog.csdn.net/Xupixel/article/details/120405501
                 mysql
             </span>
         
-            <span class="sidebar-tag-name" data-tags="skynet">
-                <span class="iconfont-archer">&#xe606;</span>
-                skynet
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="skynet源码分析">
                 <span class="iconfont-archer">&#xe606;</span>
                 skynet源码分析
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="skynet">
+                <span class="iconfont-archer">&#xe606;</span>
+                skynet
             </span>
         
             <span class="sidebar-tag-name" data-tags="lua源码">
